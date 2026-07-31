@@ -1,0 +1,1777 @@
+<!DOCTYPE html>
+<html lang="id" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buku Tamu Digital - Desa Ekasari</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Plus Jakarta Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                            800: '#065f46',
+                            900: '#064e3b',
+                        }
+                    },
+                    boxShadow: {
+                        'glow-emerald': '0 0 25px -5px rgba(16, 185, 129, 0.4)',
+                        'glow-blue': '0 0 25px -5px rgba(59, 130, 246, 0.4)',
+                        'glow-purple': '0 0 25px -5px rgba(168, 85, 247, 0.4)',
+                        'glow-amber': '0 0 25px -5px rgba(245, 158, 11, 0.4)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .colorful-bg {
+            background: radial-gradient(circle at 10% 20%, rgba(16, 185, 129, 0.08) 0%, transparent 40%),
+                        radial-gradient(circle at 90% 80%, rgba(99, 102, 241, 0.08) 0%, transparent 40%),
+                        radial-gradient(circle at 50% 50%, rgba(236, 72, 153, 0.05) 0%, transparent 50%),
+                        #f8fafc;
+        }
+        .header-gradient {
+            background: linear-gradient(135deg, #064e3b 0%, #047857 35%, #0f766e 70%, #4338ca 100%);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(2deg); }
+        }
+        .animate-float {
+            animation: floatSlow 6s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="h-full text-slate-800 flex flex-col colorful-bg min-h-screen">
+
+    <!-- Top Navigation Header -->
+    <header class="header-gradient text-white shadow-2xl relative overflow-hidden border-b border-white/20">
+        <!-- Ambient Glowing Orbs -->
+        <div class="absolute -right-12 -bottom-12 w-72 h-72 bg-teal-400/20 rounded-full blur-3xl pointer-events-none animate-pulse"></div>
+        <div class="absolute left-1/4 -top-12 w-64 h-64 bg-indigo-500/20 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute right-1/3 bottom-0 w-48 h-48 bg-pink-500/15 rounded-full blur-2xl pointer-events-none"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 relative z-10">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-5">
+                <!-- Branding -->
+                <div class="flex items-center space-x-4">
+                    <div class="w-16 h-16 bg-white/15 backdrop-blur-xl rounded-2xl flex items-center justify-center border border-white/30 shadow-2xl animate-float group hover:bg-white/20 transition">
+                        <i class="fa-solid fa-landmark text-3xl text-emerald-200 drop-shadow-md"></i>
+                    </div>
+                    <div>
+                        <div class="flex items-center space-x-2">
+                            <span class="px-3 py-0.5 rounded-full text-xs font-bold bg-gradient-to-r from-emerald-400 to-teal-300 text-emerald-950 shadow-sm">
+                                <i class="fa-solid fa-star text-[10px] mr-1"></i>Sistem Pelayanan Terpadu
+                            </span>
+                            <span class="text-xs font-mono bg-white/10 px-2 py-0.5 rounded-md border border-white/20 text-emerald-100">v3.5 Multi-Tab</span>
+                        </div>
+                        <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-white mt-1 drop-shadow-sm">
+                            Buku Tamu Digital <span class="bg-gradient-to-r from-amber-200 via-emerald-200 to-cyan-200 bg-clip-text text-transparent">Desa Ekasari</span>
+                        </h1>
+                        <p class="text-xs text-emerald-100/90 flex items-center gap-2 mt-1">
+                            <span class="inline-flex items-center justify-center w-4 h-4 bg-rose-500/80 rounded-full text-[10px]">
+                                <i class="fa-solid fa-location-dot text-white"></i>
+                            </span>
+                            Kecamatan Melaya, Kabupaten Jembrana — Bali
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Clock & Operator Info -->
+                <div class="flex items-center gap-3 bg-white/15 backdrop-blur-md p-3 rounded-2xl border border-white/20 shadow-xl self-start md:self-auto">
+                    <div class="p-3 bg-gradient-to-br from-emerald-900/90 to-teal-950/90 rounded-xl text-center min-w-[125px] border border-emerald-500/30">
+                        <div id="liveTime" class="text-xl font-extrabold font-mono tracking-wider text-emerald-300 drop-shadow-sm">00:00:00</div>
+                        <div id="liveDate" class="text-[10px] uppercase font-bold tracking-wider text-emerald-200/90 mt-0.5">Kamis, 30 Juli</div>
+                    </div>
+                    <div class="h-10 w-px bg-white/20 hidden sm:block"></div>
+                    <div class="hidden sm:block text-xs pr-2">
+                        <div class="flex items-center gap-2 font-bold text-emerald-200">
+                            <span class="relative flex h-2.5 w-2.5">
+                              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                              <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400"></span>
+                            </span>
+                            Petugas Piket
+                        </div>
+                        <div class="text-white font-semibold mt-1 flex items-center gap-1.5" id="operatorName">
+                            <i class="fa-solid fa-user-shield text-amber-300"></i> I Putu Gede Suparta
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Database Cloud Connection Status Indicator -->
+                <div class="mt-3 flex items-center justify-end">
+                    <div id="cloudBadge" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-200 border border-emerald-400/30 backdrop-blur-md shadow-sm">
+                        <i class="fa-solid fa-cloud text-emerald-300 animate-pulse"></i>
+                        <span id="cloudStatusText">Menghubungkan Database...</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Navigation Header -->
+            <div class="flex space-x-2 mt-7 border-b border-white/15 overflow-x-auto custom-scrollbar pb-1">
+                <!-- TAB 1: DASHBOARD -->
+                <button onclick="switchTab('dashboard')" id="tab-dashboard" class="px-5 py-3 text-sm font-bold rounded-t-2xl transition-all flex items-center gap-2.5 bg-white text-emerald-900 shadow-xl border-t-2 border-emerald-400">
+                    <i class="fa-solid fa-gauge-high text-amber-500 text-base"></i> Dashboard & Survei IKM
+                </button>
+                <!-- TAB 2: BUKU TAMU DIGITAL (NEW MENU PAGE) -->
+                <button onclick="switchTab('bukutamu')" id="tab-bukutamu" class="px-5 py-3 text-sm font-bold rounded-t-2xl transition-all flex items-center gap-2.5 text-emerald-100 hover:bg-white/10 hover:text-white">
+                    <i class="fa-solid fa-book-bookmark text-emerald-300 text-base"></i> Buku Tamu Digital
+                    <span id="badgeCount" class="bg-gradient-to-r from-amber-400 to-amber-500 text-amber-950 text-xs px-2.5 py-0.5 rounded-full font-black shadow-sm ml-1">0</span>
+                </button>
+                <!-- TAB 3: ANALITIK & LAPORAN -->
+                <button onclick="switchTab('analytics')" id="tab-analytics" class="px-5 py-3 text-sm font-bold rounded-t-2xl transition-all flex items-center gap-2.5 text-emerald-100 hover:bg-white/10 hover:text-white">
+                    <i class="fa-solid fa-chart-pie text-pink-300 text-base"></i> Laporan & Analitik
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full">
+
+        <!-- VIEW 1: DASHBOARD & SURVEI KEPUASAN WARGA (IKM) -->
+        <div id="view-dashboard" class="space-y-8">
+            <!-- Survei Kepuasan Warga (Smile Survey Kiosk Mode) -->
+            <div class="bg-gradient-to-r from-emerald-900 via-teal-900 to-indigo-950 rounded-3xl p-6 sm:p-8 text-white shadow-2xl relative overflow-hidden border border-emerald-500/30">
+                <!-- Ambient Light Overlay -->
+                <div class="absolute -right-10 -top-10 w-64 h-64 bg-amber-400/15 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="absolute -left-10 -bottom-10 w-64 h-64 bg-teal-400/15 rounded-full blur-3xl pointer-events-none"></div>
+
+                <div class="flex flex-col lg:flex-row items-center justify-between gap-8 relative z-10">
+                    <!-- Title & Description -->
+                    <div class="text-center lg:text-left shrink-0 max-w-lg">
+                        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-black bg-gradient-to-r from-amber-400 to-amber-500 text-amber-950 mb-3 shadow-md">
+                            <i class="fa-solid fa-face-smile text-amber-900"></i> Survei Indeks Kepuasan Masyarakat (IKM)
+                        </div>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-white leading-tight">Bagaimana Pelayanan Desa Ekasari Hari Ini?</h2>
+                        <p class="text-sm text-emerald-100/90 mt-2">Sentuh atau klik salah satu emosi di bawah untuk memberikan nilai pelayanan secara langsung bagi Pemerintah Desa Ekasari.</p>
+                        
+                        <div class="mt-5 flex items-center justify-center lg:justify-start gap-3">
+                            <button onclick="switchTab('bukutamu'); switchBukuTamuSection('input');" class="bg-gradient-to-r from-emerald-500 to-teal-400 hover:from-emerald-400 hover:to-teal-300 text-emerald-950 font-extrabold px-5 py-2.5 rounded-xl text-xs transition shadow-lg flex items-center gap-2">
+                                <i class="fa-solid fa-user-plus"></i> Isi Buku Tamu Baru
+                            </button>
+                            <button onclick="switchTab('bukutamu'); switchBukuTamuSection('list');" class="bg-white/10 hover:bg-white/20 text-white font-bold px-4 py-2.5 rounded-xl text-xs transition border border-white/20">
+                                <i class="fa-solid fa-list-check mr-1"></i> Lihat Antrean Tamu
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Smile Options Container -->
+                    <div class="flex items-center justify-center gap-3 sm:gap-4 flex-wrap">
+                        <!-- Option 2: Kurang Puas -->
+                        <button onclick="submitSurvey(2, 'Kurang Puas')" class="group flex flex-col items-center p-4 rounded-2xl bg-white/10 hover:bg-orange-500/30 border border-white/15 hover:border-orange-400 transition-all duration-300 transform hover:-translate-y-2 active:scale-95 shadow-xl min-w-[95px]">
+                            <span class="text-4xl sm:text-5xl group-hover:scale-125 transition-transform duration-300 filter drop-shadow-md">🙁</span>
+                            <span class="text-[11px] font-extrabold text-orange-200 mt-2 uppercase tracking-wider">Kurang Puas</span>
+                            <span id="surveyCount-2" class="mt-1.5 text-xs font-mono font-bold bg-orange-950/70 text-orange-300 px-2.5 py-0.5 rounded-md border border-orange-500/30">0</span>
+                        </button>
+
+                        <!-- Option 3: Cukup -->
+                        <button onclick="submitSurvey(3, 'Cukup')" class="group flex flex-col items-center p-4 rounded-2xl bg-white/10 hover:bg-amber-500/30 border border-white/15 hover:border-amber-400 transition-all duration-300 transform hover:-translate-y-2 active:scale-95 shadow-xl min-w-[95px]">
+                            <span class="text-4xl sm:text-5xl group-hover:scale-125 transition-transform duration-300 filter drop-shadow-md">😐</span>
+                            <span class="text-[11px] font-extrabold text-amber-200 mt-2 uppercase tracking-wider">Cukup</span>
+                            <span id="surveyCount-3" class="mt-1.5 text-xs font-mono font-bold bg-amber-950/70 text-amber-300 px-2.5 py-0.5 rounded-md border border-amber-500/30">0</span>
+                        </button>
+
+                        <!-- Option 4: Puas -->
+                        <button onclick="submitSurvey(4, 'Puas')" class="group flex flex-col items-center p-4 rounded-2xl bg-white/10 hover:bg-emerald-500/30 border border-white/15 hover:border-emerald-400 transition-all duration-300 transform hover:-translate-y-2 active:scale-95 shadow-xl min-w-[95px]">
+                            <span class="text-4xl sm:text-5xl group-hover:scale-125 transition-transform duration-300 filter drop-shadow-md">😊</span>
+                            <span class="text-[11px] font-extrabold text-emerald-200 mt-2 uppercase tracking-wider">Puas</span>
+                            <span id="surveyCount-4" class="mt-1.5 text-xs font-mono font-bold bg-emerald-950/70 text-emerald-300 px-2.5 py-0.5 rounded-md border border-emerald-500/30">0</span>
+                        </button>
+
+                        <!-- Option 5: Sangat Puas -->
+                        <button onclick="submitSurvey(5, 'Sangat Puas')" class="group flex flex-col items-center p-4 rounded-2xl bg-white/10 hover:bg-teal-500/30 border border-white/15 hover:border-teal-400 transition-all duration-300 transform hover:-translate-y-2 active:scale-95 shadow-xl min-w-[95px]">
+                            <span class="text-4xl sm:text-5xl group-hover:scale-125 transition-transform duration-300 filter drop-shadow-md">😍</span>
+                            <span class="text-[11px] font-extrabold text-teal-200 mt-2 uppercase tracking-wider">Sangat Puas</span>
+                            <span id="surveyCount-5" class="mt-1.5 text-xs font-mono font-bold bg-teal-950/70 text-teal-300 px-2.5 py-0.5 rounded-md border border-teal-500/30">0</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Total Responden & Satisfaction Score Bar -->
+                <div class="mt-6 pt-5 border-t border-white/15 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
+                    <div class="flex items-center gap-2">
+                        <span class="text-emerald-200 font-semibold"><i class="fa-solid fa-users text-amber-300 mr-1.5"></i> Total Responden Warga:</span>
+                        <span id="surveyTotalVotes" class="font-black text-amber-300 font-mono text-sm bg-white/10 px-3 py-1 rounded-lg border border-white/10">0</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span class="text-emerald-200 font-semibold">Indeks Kepuasan Pelayanan (IKM):</span>
+                        <div class="w-40 bg-white/10 h-4 rounded-full overflow-hidden border border-white/20 p-0.5">
+                            <div id="surveyProgressBar" class="bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-300 h-full rounded-full transition-all duration-500" style="width: 0%"></div>
+                        </div>
+                        <span id="surveyScoreText" class="font-black text-emerald-300 font-mono text-sm">0%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- REKAPAN HASIL SURVEI KEPUASAN (IKM) BREAKDOWN CARD -->
+            <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-xl border border-slate-200/80 space-y-6">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-slate-100">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 bg-gradient-to-br from-amber-400 to-amber-600 text-amber-950 rounded-2xl flex items-center justify-center text-xl shadow-md font-bold">
+                            <i class="fa-solid fa-square-poll-vertical"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-extrabold text-slate-900">Rekapan & Analisis Hasil Survei IKM</h3>
+                            <p class="text-xs text-slate-500">Rincian tingkat kepuasan warga terhadap pelayanan Kantor Desa Ekasari</p>
+                        </div>
+                    </div>
+                    <!-- Badge Mutu Pelayanan & Action Button -->
+                    <div class="flex flex-wrap items-center gap-3 self-start sm:self-auto">
+                        <button onclick="exportSurveyToCSV()" class="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-extrabold text-xs px-4 py-3 rounded-2xl transition shadow-md flex items-center gap-2">
+                            <i class="fa-solid fa-file-excel text-sm"></i> Unduh Rekapan Excel
+                        </button>
+                        <div class="bg-slate-50 border border-slate-200 p-3 rounded-2xl flex items-center gap-3 shadow-sm">
+                            <div class="text-right">
+                                <div class="text-[10px] uppercase font-extrabold text-slate-400 tracking-wider">Mutu Pelayanan</div>
+                                <div id="surveyMutuText" class="text-sm font-black text-emerald-600">SANGAT BAIK (A)</div>
+                            </div>
+                            <div id="surveyMutuBadge" class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 font-black text-lg flex items-center justify-center shadow-inner">
+                                A
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stats Summary Row -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div class="p-4 rounded-2xl bg-gradient-to-br from-emerald-50 to-teal-50 border border-emerald-200/80 flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-500 text-white flex items-center justify-center text-xl shadow-sm">
+                            <i class="fa-solid fa-face-laugh-beam"></i>
+                        </div>
+                        <div>
+                            <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Kepuasan Positif</div>
+                            <div id="surveyPositiveRate" class="text-2xl font-black text-emerald-700">0%</div>
+                            <div class="text-[10px] text-slate-400 font-medium">Pengunjung Puas & Sangat Puas</div>
+                        </div>
+                    </div>
+
+                    <div class="p-4 rounded-2xl bg-gradient-to-br from-amber-50 to-orange-50 border border-amber-200/80 flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-amber-500 text-white flex items-center justify-center text-xl shadow-sm">
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <div>
+                            <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Skor Rerata Kinerja</div>
+                            <div id="surveyAverageScore" class="text-2xl font-black text-amber-700">0.0 / 5.0</div>
+                            <div class="text-[10px] text-slate-400 font-medium">Berdasarkan total pembobotan</div>
+                        </div>
+                    </div>
+
+                    <div class="p-4 rounded-2xl bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200/80 flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-blue-500 text-white flex items-center justify-center text-xl shadow-sm">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                        <div>
+                            <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Total Partisipan</div>
+                            <div id="surveyTotalCard" class="text-2xl font-black text-blue-700">0 Warga</div>
+                            <div class="text-[10px] text-slate-400 font-medium">Responden terdata di sistem</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Detailed Emoji Breakdown Progress Bars -->
+                <div class="space-y-4 pt-2">
+                    <h4 class="text-xs font-extrabold text-slate-700 uppercase tracking-wider flex items-center gap-2">
+                        <i class="fa-solid fa-chart-bar text-teal-600"></i> Rincian Distribusi Per Kategori Emosi
+                    </h4>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <!-- Sangat Puas Breakdown -->
+                        <div class="p-4 rounded-2xl bg-teal-50/50 border border-teal-100 space-y-2">
+                            <div class="flex justify-between items-center text-xs">
+                                <span class="font-extrabold text-teal-900 flex items-center gap-2">
+                                    <span class="text-xl">😍</span> Sangat Puas
+                                </span>
+                                <span class="font-mono font-bold text-teal-700">
+                                    <span id="surveyDetailCount-5">0</span> suara (<span id="surveyDetailPct-5">0%</span>)
+                                </span>
+                            </div>
+                            <div class="w-full bg-teal-200/60 h-3 rounded-full overflow-hidden">
+                                <div id="surveyDetailBar-5" class="bg-teal-500 h-full rounded-full transition-all duration-500" style="width: 0%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Puas Breakdown -->
+                        <div class="p-4 rounded-2xl bg-emerald-50/50 border border-emerald-100 space-y-2">
+                            <div class="flex justify-between items-center text-xs">
+                                <span class="font-extrabold text-emerald-900 flex items-center gap-2">
+                                    <span class="text-xl">😊</span> Puas
+                                </span>
+                                <span class="font-mono font-bold text-emerald-700">
+                                    <span id="surveyDetailCount-4">0</span> suara (<span id="surveyDetailPct-4">0%</span>)
+                                </span>
+                            </div>
+                            <div class="w-full bg-emerald-200/60 h-3 rounded-full overflow-hidden">
+                                <div id="surveyDetailBar-4" class="bg-emerald-500 h-full rounded-full transition-all duration-500" style="width: 0%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Cukup Breakdown -->
+                        <div class="p-4 rounded-2xl bg-amber-50/50 border border-amber-100 space-y-2">
+                            <div class="flex justify-between items-center text-xs">
+                                <span class="font-extrabold text-amber-900 flex items-center gap-2">
+                                    <span class="text-xl">😐</span> Cukup
+                                </span>
+                                <span class="font-mono font-bold text-amber-700">
+                                    <span id="surveyDetailCount-3">0</span> suara (<span id="surveyDetailPct-3">0%</span>)
+                                </span>
+                            </div>
+                            <div class="w-full bg-amber-200/60 h-3 rounded-full overflow-hidden">
+                                <div id="surveyDetailBar-3" class="bg-amber-500 h-full rounded-full transition-all duration-500" style="width: 0%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Kurang Puas Breakdown -->
+                        <div class="p-4 rounded-2xl bg-orange-50/50 border border-orange-100 space-y-2">
+                            <div class="flex justify-between items-center text-xs">
+                                <span class="font-extrabold text-orange-900 flex items-center gap-2">
+                                    <span class="text-xl">🙁</span> Kurang Puas
+                                </span>
+                                <span class="font-mono font-bold text-orange-700">
+                                    <span id="surveyDetailCount-2">0</span> suara (<span id="surveyDetailPct-2">0%</span>)
+                                </span>
+                            </div>
+                            <div class="w-full bg-orange-200/60 h-3 rounded-full overflow-hidden">
+                                <div id="surveyDetailBar-2" class="bg-orange-500 h-full rounded-full transition-all duration-500" style="width: 0%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vivid Summary Cards -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+                <!-- Card 1: Total -->
+                <div class="bg-gradient-to-br from-emerald-500 to-teal-700 p-5 rounded-2xl shadow-lg text-white relative overflow-hidden group hover:-translate-y-1 transition duration-300">
+                    <div class="absolute -right-4 -bottom-4 w-24 h-24 bg-white/10 rounded-full blur-lg pointer-events-none group-hover:scale-150 transition"></div>
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <div class="text-xs font-bold uppercase tracking-wider text-emerald-100">Total Tamu Hari Ini</div>
+                            <div class="text-3xl font-extrabold mt-1 text-white" id="cardTotalToday">0</div>
+                        </div>
+                        <div class="w-12 h-12 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center text-white text-2xl shadow-inner">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                    </div>
+                    <div class="text-[11px] text-emerald-100/80 mt-3 flex items-center gap-1 font-medium">
+                        <i class="fa-solid fa-circle-check text-emerald-300"></i> Terintegrasi real-time
+                    </div>
+                </div>
+
+                <!-- Card 2: Menunggu / Dalam Proses -->
+                <div class="bg-gradient-to-br from-amber-500 to-orange-600 p-5 rounded-2xl shadow-lg text-white relative overflow-hidden group hover:-translate-y-1 transition duration-300">
+                    <div class="absolute -right-4 -bottom-4 w-24 h-24 bg-white/10 rounded-full blur-lg pointer-events-none group-hover:scale-150 transition"></div>
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <div class="text-xs font-bold uppercase tracking-wider text-amber-100">Sedang Diprofil / Antre</div>
+                            <div class="text-3xl font-extrabold mt-1 text-white" id="cardPending">0</div>
+                        </div>
+                        <div class="w-12 h-12 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center text-white text-2xl shadow-inner">
+                            <i class="fa-solid fa-hourglass-half animate-spin" style="animation-duration: 8s;"></i>
+                        </div>
+                    </div>
+                    <div class="text-[11px] text-amber-100/80 mt-3 flex items-center gap-1 font-medium">
+                        <i class="fa-solid fa-clock text-amber-200"></i> Memerlukan tindak lanjut
+                    </div>
+                </div>
+
+                <!-- Card 3: Layanan Selesai -->
+                <div class="bg-gradient-to-br from-blue-600 to-indigo-700 p-5 rounded-2xl shadow-lg text-white relative overflow-hidden group hover:-translate-y-1 transition duration-300">
+                    <div class="absolute -right-4 -bottom-4 w-24 h-24 bg-white/10 rounded-full blur-lg pointer-events-none group-hover:scale-150 transition"></div>
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <div class="text-xs font-bold uppercase tracking-wider text-blue-100">Layanan Selesai</div>
+                            <div class="text-3xl font-extrabold mt-1 text-white" id="cardCompleted">0</div>
+                        </div>
+                        <div class="w-12 h-12 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center text-white text-2xl shadow-inner">
+                            <i class="fa-solid fa-circle-check"></i>
+                        </div>
+                    </div>
+                    <div class="text-[11px] text-blue-100/80 mt-3 flex items-center gap-1 font-medium">
+                        <i class="fa-solid fa-thumbs-up text-blue-200"></i> Pelayanan tuntas
+                    </div>
+                </div>
+
+                <!-- Card 4: Kategori Terbanyak -->
+                <div class="bg-gradient-to-br from-purple-600 to-pink-600 p-5 rounded-2xl shadow-lg text-white relative overflow-hidden group hover:-translate-y-1 transition duration-300">
+                    <div class="absolute -right-4 -bottom-4 w-24 h-24 bg-white/10 rounded-full blur-lg pointer-events-none group-hover:scale-150 transition"></div>
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <div class="text-xs font-bold uppercase tracking-wider text-purple-100">Layanan Terbanyak</div>
+                            <div class="text-base font-extrabold mt-1 text-white truncate max-w-[130px]" id="cardTopPurpose">Administrasi</div>
+                        </div>
+                        <div class="w-12 h-12 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center text-white text-2xl shadow-inner">
+                            <i class="fa-solid fa-chart-line"></i>
+                        </div>
+                    </div>
+                    <div class="text-[11px] text-purple-100/80 mt-3 flex items-center gap-1 font-medium">
+                        <i class="fa-solid fa-fire text-pink-300"></i> Tren terbanyak
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- VIEW 2: HALAMAN DEDIKASI "BUKU TAMU DIGITAL" (NEW MENU PAGE) -->
+        <div id="view-bukutamu" class="hidden space-y-6">
+            
+            <!-- Buku Tamu Internal Navigation Header Bar -->
+            <div class="bg-white rounded-3xl p-4 sm:p-5 shadow-lg border border-slate-200/80 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 bg-gradient-to-br from-emerald-500 to-teal-700 text-white rounded-2xl flex items-center justify-center text-xl shadow-md">
+                        <i class="fa-solid fa-book-open-reader"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-lg font-extrabold text-slate-900">Modul Buku Tamu Digital</h2>
+                        <p class="text-xs text-slate-500">Kantor Desa Ekasari — Registrasi & Pantauan Antrean Tamu</p>
+                    </div>
+                </div>
+
+                <!-- Sub-toggle buttons -->
+                <div class="flex bg-slate-100 p-1.5 rounded-2xl border border-slate-200 w-full sm:w-auto">
+                    <button onclick="switchBukuTamuSection('input')" id="subbtn-input" class="flex-1 sm:flex-none px-5 py-2.5 rounded-xl text-xs font-extrabold transition shadow-sm bg-white text-emerald-900 flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-pen-to-square text-emerald-600"></i> Form Registrasi Tamu
+                    </button>
+                    <button onclick="switchBukuTamuSection('list')" id="subbtn-list" class="flex-1 sm:flex-none px-5 py-2.5 rounded-xl text-xs font-extrabold transition text-slate-600 hover:text-slate-900 flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-rectangle-list text-cyan-600"></i> Daftar Kunjungan Hari Ini
+                    </button>
+                </div>
+            </div>
+
+            <!-- SUB-SECTION 1: FORMULIR INPUT TAMU -->
+            <div id="buku-section-input" class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Form Input Card -->
+                <div class="lg:col-span-2 bg-white rounded-3xl shadow-xl border border-slate-200/80 p-6 sm:p-8 relative">
+                    <div class="flex items-center justify-between pb-5 border-b border-slate-100 mb-6">
+                        <div>
+                            <h3 class="text-lg font-extrabold text-slate-900 flex items-center gap-2">
+                                <span class="w-8 h-8 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-sm">
+                                    <i class="fa-solid fa-address-card"></i>
+                                </span>
+                                Formulir Pendaftaran Tamu
+                            </h3>
+                            <p class="text-xs text-slate-500 mt-1">Lengkapi identitas dan maksud kunjungan warga</p>
+                        </div>
+                        <span class="text-xs font-bold bg-rose-50 text-rose-600 px-3 py-1 rounded-full border border-rose-200">
+                            * Wajib Diisi
+                        </span>
+                    </div>
+
+                    <form id="guestForm" onsubmit="handleFormSubmit(event)" class="space-y-6">
+                        
+                        <!-- Guest Type Selection -->
+                        <div>
+                            <label class="block text-xs font-extrabold text-slate-700 uppercase tracking-wider mb-2.5">
+                                Kategori Pengunjung <span class="text-rose-500">*</span>
+                            </label>
+                            <div class="grid grid-cols-3 gap-3">
+                                <!-- Warga Desa -->
+                                <label class="cursor-pointer group">
+                                    <input type="radio" name="guestType" value="Warga Desa" checked class="peer sr-only">
+                                    <div class="p-3.5 text-center rounded-2xl border-2 border-slate-200 bg-gradient-to-b from-slate-50 to-emerald-50/20 peer-checked:border-emerald-500 peer-checked:bg-emerald-50 peer-checked:shadow-glow-emerald peer-checked:text-emerald-900 transition-all font-bold text-xs sm:text-sm flex flex-col items-center gap-2 group-hover:border-emerald-300">
+                                        <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-lg shadow-sm">
+                                            <i class="fa-solid fa-house-user"></i>
+                                        </div>
+                                        <span>Warga Desa</span>
+                                    </div>
+                                </label>
+                                <!-- Instansi / Dinas -->
+                                <label class="cursor-pointer group">
+                                    <input type="radio" name="guestType" value="Instansi / Dinas" class="peer sr-only">
+                                    <div class="p-3.5 text-center rounded-2xl border-2 border-slate-200 bg-gradient-to-b from-slate-50 to-blue-50/20 peer-checked:border-blue-500 peer-checked:bg-blue-50 peer-checked:shadow-glow-blue peer-checked:text-blue-900 transition-all font-bold text-xs sm:text-sm flex flex-col items-center gap-2 group-hover:border-blue-300">
+                                        <div class="w-10 h-10 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center text-lg shadow-sm">
+                                            <i class="fa-solid fa-building-columns"></i>
+                                        </div>
+                                        <span>Instansi / Dinas</span>
+                                    </div>
+                                </label>
+                                <!-- Swasta / Umum -->
+                                <label class="cursor-pointer group">
+                                    <input type="radio" name="guestType" value="Swasta / Umum" class="peer sr-only">
+                                    <div class="p-3.5 text-center rounded-2xl border-2 border-slate-200 bg-gradient-to-b from-slate-50 to-purple-50/20 peer-checked:border-purple-500 peer-checked:bg-purple-50 peer-checked:shadow-glow-purple peer-checked:text-purple-900 transition-all font-bold text-xs sm:text-sm flex flex-col items-center gap-2 group-hover:border-purple-300">
+                                        <div class="w-10 h-10 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center text-lg shadow-sm">
+                                            <i class="fa-solid fa-briefcase"></i>
+                                        </div>
+                                        <span>Swasta / Umum</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Grid Name & Phone -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                                    Nama Lengkap <span class="text-rose-500">*</span>
+                                </label>
+                                <div class="relative">
+                                    <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-blue-500 font-bold">
+                                        <i class="fa-solid fa-user"></i>
+                                    </span>
+                                    <input type="text" id="inputName" required placeholder="Contoh: I Wayan Sudarma" 
+                                           class="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 text-sm outline-none transition bg-slate-50/60 focus:bg-white font-medium">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                                    Nomor HP / WhatsApp
+                                </label>
+                                <div class="relative">
+                                    <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-emerald-500 font-bold">
+                                        <i class="fa-brands fa-whatsapp text-base"></i>
+                                    </span>
+                                    <input type="tel" id="inputPhone" placeholder="081234567890" 
+                                           class="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 text-sm outline-none transition bg-slate-50/60 focus:bg-white font-medium">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Address / Dusun -->
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                                Alamat Lengkap / Dusun / Banjar <span class="text-rose-500">*</span>
+                            </label>
+                            <div class="relative">
+                                <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-amber-500 font-bold">
+                                    <i class="fa-solid fa-map-location-dot"></i>
+                                </span>
+                                <input type="text" id="inputAddress" required placeholder="Contoh: Banjar Ekasari Kauh / Dusun Tirta Sari" 
+                                       class="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 text-sm outline-none transition bg-slate-50/60 focus:bg-white font-medium">
+                            </div>
+                        </div>
+
+                        <!-- Purpose & Destination Selection -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                                    Keperluan / Jenis Layanan <span class="text-rose-500">*</span>
+                                </label>
+                                <div class="relative">
+                                    <select id="inputPurpose" required class="w-full p-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 text-sm outline-none transition bg-slate-50/60 focus:bg-white font-semibold text-slate-800">
+                                        <option value="" disabled selected>-- Pilih Jenis Layanan --</option>
+                                        <option value="Administrasi Kependudukan (KTP/KK)">🪪 Administrasi Kependudukan (KTP/KK)</option>
+                                        <option value="Permohonan Surat Keterangan / Pengantar">📄 Permohonan Surat Keterangan / Pengantar</option>
+                                        <option value="Pengurusan PBB & Aset Desa">🏡 Pengurusan PBB & Aset Desa</option>
+                                        <option value="Konsultasi / Aduan Warga">💬 Konsultasi / Aduan Warga</option>
+                                        <option value="Koordinasi Dinas / Pertemuan Resmi">🏛️ Koordinasi Dinas / Pertemuan Resmi</option>
+                                        <option value="Urusan Pertanian / Subak">🌾 Urusan Pertanian / Subak</option>
+                                        <option value="Keperluan Lainnya">📌 Keperluan Lainnya</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                                    Pejabat / Staf Dituju <span class="text-rose-500">*</span>
+                                </label>
+                                <select id="inputDestination" required class="w-full p-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 text-sm outline-none transition bg-slate-50/60 focus:bg-white font-semibold text-slate-800">
+                                    <option value="" disabled selected>-- Pilih Pejabat / Bidang --</option>
+                                    <option value="Perbekel / Kepala Desa">👔 Perbekel / Kepala Desa</option>
+                                    <option value="Sekretaris Desa (Sekdes)">📋 Sekretaris Desa (Sekdes)</option>
+                                    <option value="Kaur Pemerintahan">🛡️ Kaur Pemerintahan</option>
+                                    <option value="Kaur Tata Usaha & Umum">📁 Kaur Tata Usaha & Umum</option>
+                                    <option value="Kasi Pelayanan & Kesejahteraan">🤝 Kasi Pelayanan & Kesejahteraan</option>
+                                    <option value="Kaur Keuangan">💰 Kaur Keuangan</option>
+                                    <option value="Kepala Kewilayahan / Klian Banjar">📍 Kepala Kewilayahan / Klian Banjar</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Additional Notes -->
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                                Catatan / Rincian Keperluan
+                            </label>
+                            <textarea id="inputNotes" rows="2" placeholder="Tuliskan rincian surat, berkas yang dibawa, atau pesan singkat..." 
+                                      class="w-full p-3.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 text-sm outline-none transition bg-slate-50/60 focus:bg-white font-medium"></textarea>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="pt-2 flex gap-3">
+                            <button type="submit" class="flex-1 bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700 hover:from-emerald-700 hover:to-teal-800 text-white font-extrabold py-4 px-6 rounded-2xl transition shadow-lg shadow-emerald-600/30 hover:shadow-emerald-600/50 flex items-center justify-center gap-2 text-sm sm:text-base">
+                                <i class="fa-solid fa-floppy-disk text-emerald-200"></i> Simpan Data Kunjungan
+                            </button>
+                            <button type="reset" class="px-5 py-4 border border-slate-300 text-slate-600 hover:bg-slate-100 font-bold rounded-2xl transition text-sm">
+                                Reset
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Side Widget Card -->
+                <div class="space-y-6">
+                    <!-- Operational Hours Info Box -->
+                    <div class="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-lg space-y-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-teal-100 rounded-xl flex items-center justify-center text-teal-600 font-bold">
+                                <i class="fa-solid fa-clock text-lg"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-extrabold text-slate-800 text-sm">Jam Operasional Layanan</h3>
+                                <p class="text-[11px] text-slate-500">Kantor Desa Ekasari</p>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-2 text-xs">
+                            <div class="flex justify-between items-center p-2.5 rounded-xl bg-slate-50 font-medium">
+                                <span class="text-slate-600"><i class="fa-regular fa-calendar-check text-emerald-600 mr-1.5"></i>Senin - Kamis</span>
+                                <span class="font-extrabold text-slate-800">08:00 - 15:30 WITA</span>
+                            </div>
+                            <div class="flex justify-between items-center p-2.5 rounded-xl bg-slate-50 font-medium">
+                                <span class="text-slate-600"><i class="fa-regular fa-calendar-check text-emerald-600 mr-1.5"></i>Jumat</span>
+                                <span class="font-extrabold text-slate-800">08:00 - 13:00 WITA</span>
+                            </div>
+                            <div class="flex justify-between items-center p-2.5 rounded-xl bg-rose-50/60 text-rose-700 font-semibold">
+                                <span><i class="fa-solid fa-ban text-rose-500 mr-1.5"></i>Sabtu, Minggu & Hari Libur</span>
+                                <span class="font-bold">Tutup / Libur</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Guidance Tip Card -->
+                    <div class="bg-gradient-to-br from-indigo-900 to-slate-900 rounded-3xl p-6 text-white shadow-xl space-y-3">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] font-black bg-indigo-500/30 text-indigo-200 border border-indigo-400/30">
+                            <i class="fa-solid fa-lightbulb text-amber-300"></i> Informasi Petugas
+                        </div>
+                        <h4 class="font-extrabold text-sm text-white">Verifikasi Identitas</h4>
+                        <p class="text-xs text-indigo-100/80 leading-relaxed">
+                            Pastikan mencatat nomor WhatsApp aktif warga agar pesan pembaruan status layanan kependudukan dapat terkirim secara tepat.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SUB-SECTION 2: DAFTAR RIWAYAT TAMU HARI INI -->
+            <div id="buku-section-list" class="hidden bg-white rounded-3xl shadow-xl border border-slate-200/80 overflow-hidden">
+                <!-- Table Header & Controls -->
+                <div class="p-6 border-b border-slate-200/80 bg-gradient-to-r from-slate-50 via-teal-50/20 to-slate-50 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div>
+                        <h3 class="text-xl font-extrabold text-slate-900 flex items-center gap-2.5">
+                            <span class="w-9 h-9 bg-teal-100 rounded-xl flex items-center justify-center text-teal-700 text-lg">
+                                <i class="fa-solid fa-list-check"></i>
+                            </span>
+                            Riwayat Kunjungan Tamu Hari Ini
+                        </h3>
+                        <p class="text-xs text-slate-500 mt-1">Kelola dan pantau proses pelayanan masyarakat secara real-time</p>
+                    </div>
+
+                    <!-- Search & Filter Bar -->
+                    <div class="flex flex-wrap items-center gap-3">
+                        <div class="relative min-w-[220px]">
+                            <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-teal-600">
+                                <i class="fa-solid fa-magnifying-glass text-xs"></i>
+                            </span>
+                            <input type="text" id="searchInput" onkeyup="renderTable()" placeholder="Cari nama, alamat, keperluan..." 
+                                   class="w-full pl-9 pr-3.5 py-2.5 rounded-xl border border-slate-300 text-xs font-medium focus:ring-2 focus:ring-emerald-500 outline-none bg-white shadow-sm">
+                        </div>
+
+                        <select id="filterPurpose" onchange="renderTable()" class="py-2.5 px-3.5 rounded-xl border border-slate-300 text-xs font-bold text-slate-700 focus:ring-2 focus:ring-emerald-500 outline-none bg-white shadow-sm">
+                            <option value="ALL">🌈 Semua Jenis Layanan</option>
+                            <option value="Administrasi Kependudukan (KTP/KK)">🪪 Kependudukan</option>
+                            <option value="Permohonan Surat Keterangan / Pengantar">📄 Surat Keterangan</option>
+                            <option value="Pengurusan PBB & Aset Desa">🏡 PBB & Aset</option>
+                            <option value="Konsultasi / Aduan Warga">💬 Konsultasi</option>
+                            <option value="Koordinasi Dinas / Pertemuan Resmi">🏛️ Dinas Resmi</option>
+                        </select>
+
+                        <button onclick="exportToCSV()" class="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-extrabold text-xs px-4 py-2.5 rounded-xl transition shadow-md flex items-center gap-2">
+                            <i class="fa-solid fa-file-excel"></i> Ekspor CSV
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Table Content -->
+                <div class="overflow-x-auto custom-scrollbar">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-gradient-to-r from-slate-100 to-slate-200/70 text-slate-700 text-xs uppercase font-extrabold tracking-wider border-b border-slate-200">
+                                <th class="p-4">Jam</th>
+                                <th class="p-4">Identitas Tamu</th>
+                                <th class="p-4">Keperluan & Catatan</th>
+                                <th class="p-4">Pejabat Dituju</th>
+                                <th class="p-4">Status Layanan</th>
+                                <th class="p-4 text-center">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="guestTableBody" class="divide-y divide-slate-200/80 text-sm text-slate-700 font-medium">
+                            <!-- Populated dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Table Footer -->
+                <div class="p-4 border-t border-slate-200/80 bg-slate-50/80 text-xs text-slate-500 flex flex-col sm:flex-row justify-between items-center gap-3">
+                    <span id="tableSummaryText" class="font-bold text-slate-600">Menampilkan 0 tamu</span>
+                    <button onclick="confirmClearAll()" class="text-rose-600 hover:text-rose-700 font-bold transition flex items-center gap-1.5 bg-rose-50 hover:bg-rose-100 px-3 py-1.5 rounded-xl border border-rose-200">
+                        <i class="fa-solid fa-trash-can text-xs"></i> Reset Riwayat Hari Ini
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- VIEW 3: ANALITIK & STATISTIK -->
+        <div id="view-analytics" class="hidden space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Chart 1: Layanan Terpopuler -->
+                <div class="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-xl relative overflow-hidden">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 bg-indigo-100 text-indigo-600 rounded-2xl flex items-center justify-center font-bold text-lg">
+                            <i class="fa-solid fa-chart-pie"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-extrabold text-slate-800 text-base">Distribusi Jenis Layanan</h3>
+                            <p class="text-xs text-slate-500">Persentase keperluan warga hari ini</p>
+                        </div>
+                    </div>
+                    <div class="h-64 flex items-center justify-center">
+                        <canvas id="purposeChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Chart 2: Status Layanan -->
+                <div class="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-xl relative overflow-hidden">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center font-bold text-lg">
+                            <i class="fa-solid fa-chart-column"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-extrabold text-slate-800 text-base">Status Progress Pelayanan</h3>
+                            <p class="text-xs text-slate-500">Perbandingan status penyelesaian kunjungan</p>
+                        </div>
+                    </div>
+                    <div class="h-64 flex items-center justify-center">
+                        <canvas id="statusChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Chart 3: Survei IKM Chart -->
+                <div class="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-xl relative overflow-hidden">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 bg-amber-100 text-amber-600 rounded-2xl flex items-center justify-center font-bold text-lg">
+                            <i class="fa-solid fa-face-smile"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-extrabold text-slate-800 text-base">Hasil Survei IKM Warga</h3>
+                            <p class="text-xs text-slate-500">Proporsi pilihan respons emosi warga</p>
+                        </div>
+                    </div>
+                    <div class="h-64 flex items-center justify-center">
+                        <canvas id="surveyAnalyticsChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Descriptive Info Box -->
+            <div class="bg-gradient-to-r from-emerald-800 via-teal-800 to-indigo-900 p-6 sm:p-8 rounded-3xl text-white shadow-xl flex flex-col md:flex-row items-center gap-6 relative overflow-hidden">
+                <div class="w-20 h-20 bg-white/15 backdrop-blur-md rounded-2xl flex items-center justify-center text-amber-300 text-4xl shrink-0 border border-white/20 shadow-inner">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <div>
+                    <h4 class="font-extrabold text-lg text-white">Transparansi & Akuntabilitas Desa Ekasari</h4>
+                    <p class="text-xs text-emerald-100/90 mt-1.5 leading-relaxed">
+                        Seluruh data kunjungan tersimpan secara akurat dan tersinkronisasi untuk mendukung perbaikan berkelanjutan Indeks Kepuasan Masyarakat (IKM) serta efisiensi waktu pelayanan publik di Pemerintahan Desa Ekasari.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Custom In-App Toast Notification -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 hidden transform transition-all duration-300">
+        <div class="bg-slate-900 text-white px-5 py-3.5 rounded-2xl shadow-2xl flex items-center gap-3 border border-slate-700 text-xs font-bold">
+            <span id="toastIcon" class="text-emerald-400 text-lg"><i class="fa-solid fa-circle-check"></i></span>
+            <span id="toastMsg">Data berhasil disimpan!</span>
+        </div>
+    </div>
+
+    <!-- Modal Popup Survei IKM (Centered & Interactive) -->
+    <div id="surveyModal" onclick="if(event.target === this) closeSurveyModal()" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/60 backdrop-blur-md hidden opacity-0 transition-opacity duration-300">
+        <div id="surveyModalCard" class="bg-white rounded-3xl p-6 sm:p-8 max-w-md w-full shadow-2xl border border-slate-100 text-center transform scale-90 transition-all duration-300 relative overflow-hidden">
+            <!-- Decorative Ambient Glow Background -->
+            <div id="modalGlow" class="absolute -top-16 -left-16 w-48 h-48 rounded-full blur-3xl opacity-30 pointer-events-none"></div>
+            <div id="modalGlow2" class="absolute -bottom-16 -right-16 w-48 h-48 rounded-full blur-3xl opacity-30 pointer-events-none"></div>
+
+            <!-- Animated Emoji Box -->
+            <div class="relative inline-block mb-3">
+                <div id="modalEmojiContainer" class="w-24 h-24 rounded-3xl flex items-center justify-center text-6xl shadow-xl border-2 transform hover:scale-105 transition duration-300 mx-auto">
+                    <span id="modalEmoji">😍</span>
+                </div>
+                <div class="absolute -bottom-2 -right-2 w-8 h-8 rounded-full bg-amber-400 text-amber-950 flex items-center justify-center text-sm shadow-md font-black">
+                    <i class="fa-solid fa-star"></i>
+                </div>
+            </div>
+
+            <h3 id="modalTitle" class="text-xl sm:text-2xl font-black text-slate-900 tracking-tight mt-1">Terima Kasih!</h3>
+            <div id="modalBadge" class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-black my-2 border">
+                <span id="modalRatingText">Sangat Puas</span>
+            </div>
+
+            <p id="modalMessage" class="text-xs sm:text-sm text-slate-600 mt-2 font-medium leading-relaxed">
+                Penilaian Anda sangat berharga untuk meningkatkan kualitas pelayanan publik di Kantor Desa Ekasari.
+            </p>
+
+            <!-- Auto Close Progress Indicator -->
+            <div class="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden my-5">
+                <div id="modalProgressBar" class="h-full bg-gradient-to-r from-emerald-500 to-teal-400 transition-all duration-[3500ms] ease-linear" style="width: 100%"></div>
+            </div>
+
+            <button onclick="closeSurveyModal()" class="w-full bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700 hover:from-emerald-700 hover:to-teal-800 text-white font-extrabold py-3.5 px-6 rounded-2xl transition shadow-lg shadow-emerald-600/30 text-xs sm:text-sm flex items-center justify-center gap-2">
+                <i class="fa-solid fa-circle-check text-emerald-200"></i> Tutup & Lanjutkan
+            </button>
+        </div>
+    </div>
+
+    <!-- Firebase SDK & Application Script -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc, updateDoc, deleteDoc, doc, onSnapshot, getDocs, setDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // Global State & Database Setup
+        const LOCAL_KEY = 'ekasari_guestbook_v3_color';
+        const SURVEY_KEY = 'ekasari_survey_votes_v1';
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'ekasari-guestbook-app';
+        let db = null;
+        let auth = null;
+        let guestsRef = null;
+        let surveyRef = null;
+        let isCloudStorage = false;
+
+        let guests = [];
+        let surveyCounts = { 2: 1, 3: 5, 4: 18, 5: 34 };
+        let purposeChartInstance = null;
+        let statusChartInstance = null;
+        let surveyChartInstance = null;
+
+        // Sample Data Fallback
+        const sampleGuests = [
+            {
+                id: 'EKS-001',
+                time: '08:15',
+                date: new Date().toLocaleDateString('id-ID'),
+                name: 'I Gede Putu Sutama',
+                phone: '081987654321',
+                type: 'Warga Desa',
+                address: 'Dusun Ekasari Kauh',
+                purpose: 'Administrasi Kependudukan (KTP/KK)',
+                destination: 'Kaur Pemerintahan',
+                notes: 'Pengurusan pembaruan KK baru',
+                status: 'Selesai'
+            },
+            {
+                id: 'EKS-002',
+                time: '09:30',
+                date: new Date().toLocaleDateString('id-ID'),
+                name: 'Ni Made Ratnasari',
+                phone: '082145678901',
+                type: 'Warga Desa',
+                address: 'Banjar Tirta Sari',
+                purpose: 'Permohonan Surat Keterangan / Pengantar',
+                destination: 'Kasi Pelayanan & Kesejahteraan',
+                notes: 'Surat Keterangan Usaha UMKM Kuliner',
+                status: 'Sedang Dilayani'
+            },
+            {
+                id: 'EKS-003',
+                time: '10:05',
+                date: new Date().toLocaleDateString('id-ID'),
+                name: 'Drs. Anom Wijaya',
+                phone: '081233445566',
+                type: 'Instansi / Dinas',
+                address: 'Dinas Pemberdayaan Masyarakat Jembrana',
+                purpose: 'Koordinasi Dinas / Pertemuan Resmi',
+                destination: 'Perbekel / Kepala Desa',
+                notes: 'Membahas evaluasi dana desa',
+                status: 'Menunggu'
+            }
+        ];
+
+        // Global Window Exposure
+        window.switchTab = switchTab;
+        window.switchBukuTamuSection = switchBukuTamuSection;
+        window.handleFormSubmit = handleFormSubmit;
+        window.renderTable = renderTable;
+        window.updateStatus = updateStatus;
+        window.deleteGuest = deleteGuest;
+        window.confirmClearAll = confirmClearAll;
+        window.exportToCSV = exportToCSV;
+        window.exportSurveyToCSV = exportSurveyToCSV;
+        window.submitSurvey = submitSurvey;
+        window.closeSurveyModal = closeSurveyModal;
+
+        let surveyModalTimer = null;
+
+        window.onload = async function() {
+            startClock();
+            initCharts();
+            loadSurveyLocal();
+            await initStorage();
+        };
+
+        // Initialize Firebase Storage or Local Fallback
+        async function initStorage() {
+            let firebaseConfig = null;
+            if (typeof __firebase_config !== 'undefined' && __firebase_config) {
+                try {
+                    firebaseConfig = JSON.parse(__firebase_config);
+                } catch(e) {
+                    console.warn("Konfigurasi Firebase tidak valid", e);
+                }
+            }
+
+            if (firebaseConfig) {
+                try {
+                    const app = initializeApp(firebaseConfig);
+                    auth = getAuth(app);
+                    db = getFirestore(app);
+
+                    if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                        await signInWithCustomToken(auth, __initial_auth_token);
+                    } else {
+                        await signInAnonymously(auth);
+                    }
+
+                    // Strict path rule: /artifacts/{appId}/public/data/guests
+                    guestsRef = collection(db, 'artifacts', appId, 'public', 'data', 'guests');
+                    surveyRef = doc(db, 'artifacts', appId, 'public', 'data', 'survey', 'votes');
+                    isCloudStorage = true;
+                    updateCloudBadge(true, "Cloud Database Active");
+
+                    // Listen to Survey Votes
+                    onSnapshot(surveyRef, (snap) => {
+                        if (snap.exists()) {
+                            surveyCounts = snap.data();
+                            renderSurveyUI();
+                        } else {
+                            setDoc(surveyRef, surveyCounts);
+                            renderSurveyUI();
+                        }
+                    }, (err) => console.warn("Survey listener error:", err));
+
+                    // Realtime Firestore Listener
+                    onSnapshot(guestsRef, (snapshot) => {
+                        if (snapshot.empty) {
+                            sampleGuests.forEach(async (g) => {
+                                await addDoc(guestsRef, g);
+                            });
+                            return;
+                        }
+                        guests = snapshot.docs.map(docSnap => ({
+                            docId: docSnap.id,
+                            ...docSnap.data()
+                        }));
+
+                        guests.sort((a, b) => (b.id || '').localeCompare(a.id || ''));
+
+                        renderTable();
+                        updateSummaryCards();
+                        if (!document.getElementById('view-analytics').classList.contains('hidden')) {
+                            updateCharts();
+                        }
+                    }, (error) => {
+                        console.error("Firestore listener error:", error);
+                        fallbackToLocal();
+                    });
+
+                    return;
+                } catch(err) {
+                    console.error("Gagal menginisialisasi Firebase:", err);
+                }
+            }
+
+            fallbackToLocal();
+        }
+
+        // Survey Functions
+        function loadSurveyLocal() {
+            const saved = localStorage.getItem(SURVEY_KEY);
+            if (saved) {
+                try { surveyCounts = JSON.parse(saved); } catch(e){}
+            }
+            renderSurveyUI();
+        }
+
+        function saveSurveyLocal() {
+            localStorage.setItem(SURVEY_KEY, JSON.stringify(surveyCounts));
+        }
+
+        async function submitSurvey(score, label) {
+            surveyCounts[score] = (surveyCounts[score] || 0) + 1;
+            renderSurveyUI();
+
+            if (isCloudStorage && surveyRef) {
+                try {
+                    await setDoc(surveyRef, surveyCounts);
+                } catch(e) {
+                    console.error("Gagal menyimpan survei cloud:", e);
+                }
+            } else {
+                saveSurveyLocal();
+            }
+
+            showSurveyModal(score, label);
+        }
+
+        function showSurveyModal(score, label) {
+            const modal = document.getElementById('surveyModal');
+            const card = document.getElementById('surveyModalCard');
+            const emojiEl = document.getElementById('modalEmoji');
+            const emojiBox = document.getElementById('modalEmojiContainer');
+            const titleEl = document.getElementById('modalTitle');
+            const badgeEl = document.getElementById('modalBadge');
+            const badgeText = document.getElementById('modalRatingText');
+            const msgEl = document.getElementById('modalMessage');
+            const progressBar = document.getElementById('modalProgressBar');
+            const glow1 = document.getElementById('modalGlow');
+            const glow2 = document.getElementById('modalGlow2');
+
+            const surveyConfig = {
+                2: {
+                    emoji: '🙁',
+                    title: 'Terima Kasih Atas Masukan Anda!',
+                    message: 'Kami memohon maaf jika pelayanan belum maksimal. Masukan Anda akan menjadi bahan evaluasi perbaikan bagi Kantor Desa Ekasari.',
+                    badgeBg: 'bg-orange-50 text-orange-700 border-orange-200',
+                    boxBg: 'bg-gradient-to-br from-orange-100 to-amber-100 border-orange-300 text-orange-950',
+                    glowColor: 'bg-orange-500',
+                    barColor: 'from-orange-500 to-amber-500'
+                },
+                3: {
+                    emoji: '😐',
+                    title: 'Terima Kasih Atas Penilaian Anda!',
+                    message: 'Terima kasih! Kami akan terus berbenah memberikan pelayanan yang semakin prima bagi seluruh warga Desa Ekasari.',
+                    badgeBg: 'bg-amber-50 text-amber-700 border-amber-200',
+                    boxBg: 'bg-gradient-to-br from-amber-100 to-yellow-100 border-amber-300 text-amber-950',
+                    glowColor: 'bg-amber-500',
+                    barColor: 'from-amber-500 to-yellow-500'
+                },
+                4: {
+                    emoji: '😊',
+                    title: 'Terima Kasih Banyak!',
+                    message: 'Senang dapat melayani Anda dengan baik! Kebahagiaan dan kepuasan warga adalah prioritas utama pelayanan kami.',
+                    badgeBg: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                    boxBg: 'bg-gradient-to-br from-emerald-100 to-teal-100 border-emerald-300 text-emerald-950',
+                    glowColor: 'bg-emerald-500',
+                    barColor: 'from-emerald-500 to-teal-500'
+                },
+                5: {
+                    emoji: '😍',
+                    title: 'Apresiasi Sangat Luar Biasa!',
+                    message: 'Terima kasih atas apresiasi tertinggi Anda! Penilaian ini menjadi dorongan semangat bagi seluruh staf Desa Ekasari untuk terus berprestasi.',
+                    badgeBg: 'bg-teal-50 text-teal-700 border-teal-200',
+                    boxBg: 'bg-gradient-to-br from-teal-100 to-cyan-100 border-teal-300 text-teal-950',
+                    glowColor: 'bg-teal-500',
+                    barColor: 'from-teal-500 to-cyan-500'
+                }
+            };
+
+            const config = surveyConfig[score] || surveyConfig[5];
+
+            emojiEl.textContent = config.emoji;
+            titleEl.textContent = config.title;
+            msgEl.textContent = config.message;
+            badgeText.textContent = label;
+            badgeEl.className = `inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-black my-2 border ${config.badgeBg}`;
+            emojiBox.className = `w-24 h-24 rounded-3xl flex items-center justify-center text-6xl shadow-xl border-2 transform hover:scale-105 transition duration-300 mx-auto ${config.boxBg}`;
+            glow1.className = `absolute -top-16 -left-16 w-48 h-48 rounded-full blur-3xl opacity-30 pointer-events-none ${config.glowColor}`;
+            glow2.className = `absolute -bottom-16 -right-16 w-48 h-48 rounded-full blur-3xl opacity-30 pointer-events-none ${config.glowColor}`;
+            progressBar.className = `h-full bg-gradient-to-r ${config.barColor} transition-all duration-[3500ms] ease-linear`;
+
+            // Reset progress bar width
+            progressBar.style.transition = 'none';
+            progressBar.style.width = '100%';
+
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                card.classList.remove('scale-90');
+                card.classList.add('scale-100');
+
+                // Trigger smooth countdown animation
+                setTimeout(() => {
+                    progressBar.style.transition = 'width 3500ms linear';
+                    progressBar.style.width = '0%';
+                }, 50);
+            }, 10);
+
+            if (surveyModalTimer) clearTimeout(surveyModalTimer);
+            surveyModalTimer = setTimeout(() => {
+                closeSurveyModal();
+            }, 3600);
+        }
+
+        function closeSurveyModal() {
+            if (surveyModalTimer) clearTimeout(surveyModalTimer);
+            const modal = document.getElementById('surveyModal');
+            const card = document.getElementById('surveyModalCard');
+            if (!modal || !card) return;
+
+            modal.classList.add('opacity-0');
+            card.classList.remove('scale-100');
+            card.classList.add('scale-90');
+
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        function renderSurveyUI() {
+            let total = 0;
+            let weightedSum = 0;
+
+            for (let i = 2; i <= 5; i++) {
+                const count = surveyCounts[i] || 0;
+                total += count;
+                weightedSum += count * i;
+
+                const countEl = document.getElementById(`surveyCount-${i}`);
+                if (countEl) countEl.textContent = count;
+
+                // Update detail breakdown counts
+                const detailCountEl = document.getElementById(`surveyDetailCount-${i}`);
+                if (detailCountEl) detailCountEl.textContent = count;
+            }
+
+            const totalEl = document.getElementById('surveyTotalVotes');
+            if (totalEl) totalEl.textContent = total;
+
+            const totalCard = document.getElementById('surveyTotalCard');
+            if (totalCard) totalCard.textContent = `${total} Warga`;
+
+            // Calculate score percentages
+            const scorePercent = total > 0 ? Math.round((weightedSum / (total * 5)) * 100) : 0;
+            const avgScore = total > 0 ? (weightedSum / total).toFixed(1) : "0.0";
+
+            const scoreText = document.getElementById('surveyScoreText');
+            if (scoreText) scoreText.textContent = `${scorePercent}%`;
+
+            const bar = document.getElementById('surveyProgressBar');
+            if (bar) bar.style.width = `${scorePercent}%`;
+
+            const avgScoreEl = document.getElementById('surveyAverageScore');
+            if (avgScoreEl) avgScoreEl.textContent = `${avgScore} / 5.0`;
+
+            // Calculate positive rating percentage (Puas & Sangat Puas -> scores 4 & 5)
+            const positiveVotes = (surveyCounts[4] || 0) + (surveyCounts[5] || 0);
+            const positivePct = total > 0 ? Math.round((positiveVotes / total) * 100) : 0;
+            const positiveRateEl = document.getElementById('surveyPositiveRate');
+            if (positiveRateEl) positiveRateEl.textContent = `${positivePct}%`;
+
+            // Update percentage bars for each score
+            for (let i = 2; i <= 5; i++) {
+                const count = surveyCounts[i] || 0;
+                const pct = total > 0 ? Math.round((count / total) * 100) : 0;
+
+                const pctEl = document.getElementById(`surveyDetailPct-${i}`);
+                if (pctEl) pctEl.textContent = `${pct}%`;
+
+                const detailBar = document.getElementById(`surveyDetailBar-${i}`);
+                if (detailBar) detailBar.style.width = `${pct}%`;
+            }
+
+            // Calculate Mutu Pelayanan Grade based on IKM standard
+            let mutuText = "SANGAT BAIK (A)";
+            let mutuBadge = "A";
+            let mutuColor = "text-emerald-600";
+            let mutuBg = "bg-emerald-100 text-emerald-700";
+
+            if (scorePercent >= 88.31) {
+                mutuText = "SANGAT BAIK (A)";
+                mutuBadge = "A";
+                mutuColor = "text-emerald-600";
+                mutuBg = "bg-emerald-100 text-emerald-700";
+            } else if (scorePercent >= 76.61) {
+                mutuText = "BAIK (B)";
+                mutuBadge = "B";
+                mutuColor = "text-blue-600";
+                mutuBg = "bg-blue-100 text-blue-700";
+            } else if (scorePercent >= 65.00) {
+                mutuText = "CUKUP (C)";
+                mutuBadge = "C";
+                mutuColor = "text-amber-600";
+                mutuBg = "bg-amber-100 text-amber-700";
+            } else {
+                mutuText = "KURANG (D)";
+                mutuBadge = "D";
+                mutuColor = "text-rose-600";
+                mutuBg = "bg-rose-100 text-rose-700";
+            }
+
+            const mutuTextEl = document.getElementById('surveyMutuText');
+            if (mutuTextEl) {
+                mutuTextEl.textContent = mutuText;
+                mutuTextEl.className = `text-sm font-black ${mutuColor}`;
+            }
+
+            const mutuBadgeEl = document.getElementById('surveyMutuBadge');
+            if (mutuBadgeEl) {
+                mutuBadgeEl.textContent = mutuBadge;
+                mutuBadgeEl.className = `w-10 h-10 rounded-xl font-black text-lg flex items-center justify-center shadow-inner ${mutuBg}`;
+            }
+
+            if (!document.getElementById('view-analytics').classList.contains('hidden')) {
+                updateCharts();
+            }
+        }
+
+        function fallbackToLocal() {
+            isCloudStorage = false;
+            updateCloudBadge(false, "Penyimpanan Lokal");
+            loadLocalGuests();
+            renderTable();
+            updateSummaryCards();
+        }
+
+        function updateCloudBadge(isConnected, text) {
+            const badge = document.getElementById('cloudBadge');
+            const txt = document.getElementById('cloudStatusText');
+            txt.textContent = text;
+            if (isConnected) {
+                badge.className = "inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-200 border border-emerald-400/30 backdrop-blur-md shadow-sm";
+                badge.querySelector('i').className = "fa-solid fa-cloud text-emerald-300 animate-pulse";
+            } else {
+                badge.className = "inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-200 border border-amber-400/30 backdrop-blur-md shadow-sm";
+                badge.querySelector('i').className = "fa-solid fa-hard-drive text-amber-300";
+            }
+        }
+
+        // Realtime Clock
+        function startClock() {
+            const timeEl = document.getElementById('liveTime');
+            const dateEl = document.getElementById('liveDate');
+
+            function update() {
+                const now = new Date();
+                timeEl.textContent = now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+                dateEl.textContent = now.toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'short' });
+            }
+            update();
+            setInterval(update, 1000);
+        }
+
+        // Local Storage Helpers
+        function loadLocalGuests() {
+            const stored = localStorage.getItem(LOCAL_KEY);
+            if (stored) {
+                try {
+                    guests = JSON.parse(stored);
+                } catch(e) {
+                    guests = sampleGuests;
+                }
+            } else {
+                guests = sampleGuests;
+                saveLocalGuests();
+            }
+        }
+
+        function saveLocalGuests() {
+            localStorage.setItem(LOCAL_KEY, JSON.stringify(guests));
+        }
+
+        // Custom Toast Handler
+        function showToast(message, iconClass = "fa-circle-check text-emerald-400") {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toastMsg');
+            const toastIcon = document.getElementById('toastIcon');
+
+            toastMsg.textContent = message;
+            toastIcon.innerHTML = `<i class="fa-solid ${iconClass}"></i>`;
+
+            toast.classList.remove('hidden');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 3000);
+        }
+
+        // Main Tab Switcher
+        function switchTab(tabName) {
+            const tabs = ['dashboard', 'bukutamu', 'analytics'];
+            tabs.forEach(t => {
+                const btn = document.getElementById(`tab-${t}`);
+                const view = document.getElementById(`view-${t}`);
+                if (!btn || !view) return;
+                
+                if (t === tabName) {
+                    btn.className = "px-5 py-3 text-sm font-extrabold rounded-t-2xl transition-all flex items-center gap-2.5 bg-white text-emerald-900 shadow-xl border-t-2 border-emerald-400";
+                    view.classList.remove('hidden');
+                } else {
+                    btn.className = "px-5 py-3 text-sm font-extrabold rounded-t-2xl transition-all flex items-center gap-2.5 text-emerald-100 hover:bg-white/10 hover:text-white";
+                    view.classList.add('hidden');
+                }
+            });
+
+            if (tabName === 'analytics') {
+                updateCharts();
+            }
+        }
+
+        // Internal Buku Tamu Section Switcher (Form vs List)
+        function switchBukuTamuSection(sectionName) {
+            const secInput = document.getElementById('buku-section-input');
+            const secList = document.getElementById('buku-section-list');
+            const btnInput = document.getElementById('subbtn-input');
+            const btnList = document.getElementById('subbtn-list');
+
+            if (sectionName === 'input') {
+                secInput.classList.remove('hidden');
+                secList.classList.add('hidden');
+                btnInput.className = "flex-1 sm:flex-none px-5 py-2.5 rounded-xl text-xs font-extrabold transition shadow-sm bg-white text-emerald-900 flex items-center justify-center gap-2";
+                btnList.className = "flex-1 sm:flex-none px-5 py-2.5 rounded-xl text-xs font-extrabold transition text-slate-600 hover:text-slate-900 flex items-center justify-center gap-2";
+            } else {
+                secInput.classList.add('hidden');
+                secList.classList.remove('hidden');
+                btnList.className = "flex-1 sm:flex-none px-5 py-2.5 rounded-xl text-xs font-extrabold transition shadow-sm bg-white text-emerald-900 flex items-center justify-center gap-2";
+                btnInput.className = "flex-1 sm:flex-none px-5 py-2.5 rounded-xl text-xs font-extrabold transition text-slate-600 hover:text-slate-900 flex items-center justify-center gap-2";
+            }
+        }
+
+        // Submit Form Handler
+        async function handleFormSubmit(e) {
+            e.preventDefault();
+
+            const guestTypeEl = document.querySelector('input[name="guestType"]:checked');
+            const newId = 'EKS-' + String(guests.length + 1).padStart(3, '0');
+            const now = new Date();
+
+            const newGuest = {
+                id: newId,
+                time: now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' }),
+                date: now.toLocaleDateString('id-ID'),
+                name: document.getElementById('inputName').value.trim(),
+                phone: document.getElementById('inputPhone').value.trim() || '-',
+                type: guestTypeEl ? guestTypeEl.value : 'Warga Desa',
+                address: document.getElementById('inputAddress').value.trim(),
+                purpose: document.getElementById('inputPurpose').value,
+                destination: document.getElementById('inputDestination').value,
+                notes: document.getElementById('inputNotes').value.trim() || '-',
+                status: 'Menunggu',
+                createdAt: Date.now()
+            };
+
+            if (isCloudStorage && guestsRef) {
+                try {
+                    await addDoc(guestsRef, newGuest);
+                    showToast('Data kunjungan berhasil tersimpan di Cloud Database!');
+                } catch(err) {
+                    console.error("Gagal menambahkan ke cloud:", err);
+                    showToast('Gagal menyimpan ke Cloud, tersimpan lokal', 'fa-triangle-exclamation text-amber-400');
+                }
+            } else {
+                guests.unshift(newGuest);
+                saveLocalGuests();
+                renderTable();
+                updateSummaryCards();
+                showToast('Data kunjungan tersimpan di penyimpanan lokal!');
+            }
+
+            document.getElementById('guestForm').reset();
+            switchBukuTamuSection('list'); // Automatically switch to view table after saving
+        }
+
+        // Render Table
+        function renderTable() {
+            const tbody = document.getElementById('guestTableBody');
+            if (!tbody) return;
+
+            const searchVal = document.getElementById('searchInput').value.toLowerCase();
+            const purposeFilter = document.getElementById('filterPurpose').value;
+
+            const filtered = guests.filter(g => {
+                const matchesSearch = g.name.toLowerCase().includes(searchVal) || 
+                                      g.address.toLowerCase().includes(searchVal) || 
+                                      g.purpose.toLowerCase().includes(searchVal);
+                const matchesPurpose = (purposeFilter === 'ALL') || (g.purpose === purposeFilter);
+                return matchesSearch && matchesPurpose;
+            });
+
+            if (filtered.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="6" class="p-10 text-center text-slate-400">
+                            <i class="fa-solid fa-folder-open text-4xl mb-3 block text-slate-300"></i>
+                            <p class="font-bold text-sm text-slate-500">Tidak ada riwayat kunjungan yang cocok.</p>
+                        </td>
+                    </tr>
+                `;
+            } else {
+                tbody.innerHTML = filtered.map(g => {
+                    let statusClass = 'bg-amber-100 text-amber-800 border-amber-300';
+                    if (g.status === 'Selesai') statusClass = 'bg-emerald-100 text-emerald-800 border-emerald-300';
+                    if (g.status === 'Sedang Dilayani') statusClass = 'bg-sky-100 text-sky-800 border-sky-300';
+
+                    let typeBadge = 'bg-emerald-100 text-emerald-800 border-emerald-200';
+                    if (g.type === 'Instansi / Dinas') typeBadge = 'bg-blue-100 text-blue-800 border-blue-200';
+                    if (g.type === 'Swasta / Umum') typeBadge = 'bg-purple-100 text-purple-800 border-purple-200';
+
+                    const itemKey = g.docId || g.id;
+
+                    return `
+                        <tr class="hover:bg-teal-50/40 transition duration-150">
+                            <td class="p-4 font-mono text-xs font-bold text-slate-600">
+                                <span class="bg-slate-100 px-2.5 py-1 rounded-lg text-slate-700 border border-slate-200">${g.time}</span>
+                            </td>
+                            <td class="p-4">
+                                <div class="font-extrabold text-slate-900">${g.name}</div>
+                                <div class="text-xs text-slate-500 flex items-center gap-2 mt-1">
+                                    <span><i class="fa-solid fa-location-dot text-amber-500"></i> ${g.address}</span>
+                                    <span>•</span>
+                                    <span class="px-2 py-0.5 rounded-full text-[10px] font-extrabold border ${typeBadge}">${g.type}</span>
+                                </div>
+                            </td>
+                            <td class="p-4">
+                                <div class="font-bold text-slate-800">${g.purpose}</div>
+                                ${g.notes !== '-' ? `<div class="text-xs text-slate-400 italic mt-0.5">${g.notes}</div>` : ''}
+                            </td>
+                            <td class="p-4">
+                                <span class="inline-flex items-center gap-1.5 text-xs font-extrabold px-3 py-1 rounded-xl bg-indigo-50 text-indigo-700 border border-indigo-200">
+                                    <i class="fa-solid fa-user-tie text-indigo-500"></i> ${g.destination}
+                                </span>
+                            </td>
+                            <td class="p-4">
+                                <select onchange="updateStatus('${itemKey}', this.value)" class="text-xs font-extrabold px-3 py-1.5 rounded-full border-2 ${statusClass} outline-none cursor-pointer shadow-sm">
+                                    <option value="Menunggu" ${g.status === 'Menunggu' ? 'selected' : ''}>⏳ Menunggu</option>
+                                    <option value="Sedang Dilayani" ${g.status === 'Sedang Dilayani' ? 'selected' : ''}>🔄 Sedang Dilayani</option>
+                                    <option value="Selesai" ${g.status === 'Selesai' ? 'selected' : ''}>✅ Selesai</option>
+                                </select>
+                            </td>
+                            <td class="p-4 text-center">
+                                <button onclick='deleteGuest("${itemKey}")' title="Hapus Data" class="p-2 text-rose-500 hover:text-rose-700 rounded-xl bg-rose-50 hover:bg-rose-100 transition">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    `;
+                }).join('');
+            }
+
+            document.getElementById('tableSummaryText').textContent = `Menampilkan ${filtered.length} dari ${guests.length} tamu hari ini`;
+            document.getElementById('badgeCount').textContent = guests.length;
+        }
+
+        // Summary Cards Update
+        function updateSummaryCards() {
+            document.getElementById('cardTotalToday').textContent = guests.length;
+            document.getElementById('cardPending').textContent = guests.filter(g => g.status !== 'Selesai').length;
+            document.getElementById('cardCompleted').textContent = guests.filter(g => g.status === 'Selesai').length;
+
+            const counts = {};
+            guests.forEach(g => counts[g.purpose] = (counts[g.purpose] || 0) + 1);
+            let top = '-';
+            let max = 0;
+            for (let key in counts) {
+                if (counts[key] > max) {
+                    max = counts[key];
+                    top = key;
+                }
+            }
+            document.getElementById('cardTopPurpose').textContent = top.split(' ')[0] || 'Umum';
+        }
+
+        // Update Status Handler
+        async function updateStatus(identifier, newStatus) {
+            const item = guests.find(g => (g.docId === identifier || g.id === identifier));
+            if (!item) return;
+
+            if (isCloudStorage && item.docId && db) {
+                try {
+                    const itemDoc = doc(db, 'artifacts', appId, 'public', 'data', 'guests', item.docId);
+                    await updateDoc(itemDoc, { status: newStatus });
+                    showToast(`Status ${item.name} berhasil diperbarui!`);
+                } catch(err) {
+                    console.error("Gagal memperbarui status di cloud:", err);
+                    item.status = newStatus;
+                    renderTable();
+                    updateSummaryCards();
+                }
+            } else {
+                item.status = newStatus;
+                saveLocalGuests();
+                updateSummaryCards();
+                renderTable();
+                showToast(`Status tamu ${item.name} diubah ke ${newStatus}`);
+            }
+        }
+
+        // Delete Guest Item
+        async function deleteGuest(identifier) {
+            const item = guests.find(g => (g.docId === identifier || g.id === identifier));
+            if (!item) return;
+
+            if (isCloudStorage && item.docId && db) {
+                try {
+                    const itemDoc = doc(db, 'artifacts', appId, 'public', 'data', 'guests', item.docId);
+                    await deleteDoc(itemDoc);
+                    showToast('Data kunjungan dihapus dari Cloud Database', 'fa-trash text-rose-400');
+                } catch(err) {
+                    console.error("Gagal menghapus data dari cloud:", err);
+                }
+            } else {
+                guests = guests.filter(g => (g.docId !== identifier && g.id !== identifier));
+                saveLocalGuests();
+                renderTable();
+                updateSummaryCards();
+                showToast('Data kunjungan berhasil dihapus', 'fa-trash text-rose-400');
+            }
+        }
+
+        // Clear All History
+        async function confirmClearAll() {
+            if (guests.length === 0) return;
+
+            if (isCloudStorage && db) {
+                try {
+                    const snapshot = await getDocs(guestsRef);
+                    const deletePromises = snapshot.docs.map(docSnap => deleteDoc(docSnap.ref));
+                    await Promise.all(deletePromises);
+                    showToast('Semua data kunjungan telah dibersihkan', 'fa-rotate-left text-amber-400');
+                } catch(err) {
+                    console.error("Gagal menghapus seluruh data:", err);
+                }
+            } else {
+                guests = [];
+                saveLocalGuests();
+                renderTable();
+                updateSummaryCards();
+                showToast('Riwayat tamu berhasil di-reset', 'fa-rotate-left text-amber-400');
+            }
+        }
+
+        // Export to CSV
+        function exportToCSV() {
+            if (guests.length === 0) {
+                showToast('Belum ada data untuk diekspor!', 'fa-triangle-exclamation text-amber-400');
+                return;
+            }
+
+            let csvContent = "data:text/csv;charset=utf-8,\uFEFF";
+            csvContent += "ID Registrasi,Jam,Tanggal,Nama,No HP,Kategori,Alamat,Keperluan,Tujuan,Catatan,Status\n";
+
+            guests.forEach(g => {
+                const row = [
+                    g.id,
+                    g.time,
+                    g.date,
+                    `"${g.name}"`,
+                    `"${g.phone}"`,
+                    `"${g.type}"`,
+                    `"${g.address}"`,
+                    `"${g.purpose}"`,
+                    `"${g.destination}"`,
+                    `"${g.notes}"`,
+                    g.status
+                ].join(",");
+                csvContent += row + "\n";
+            });
+
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", `Buku_Tamu_Desa_Ekasari_${new Date().toISOString().slice(0,10)}.csv`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            showToast('Data berhasil diekspor ke format CSV Excel!');
+        }
+
+        // Export Survey Summary to Excel CSV
+        function exportSurveyToCSV() {
+            let total = 0;
+            let weightedSum = 0;
+            for (let i = 2; i <= 5; i++) {
+                const count = surveyCounts[i] || 0;
+                total += count;
+                weightedSum += count * i;
+            }
+            const scorePercent = total > 0 ? Math.round((weightedSum / (total * 5)) * 100) : 0;
+            const avgScore = total > 0 ? (weightedSum / total).toFixed(2) : "0.0";
+            const positiveVotes = (surveyCounts[4] || 0) + (surveyCounts[5] || 0);
+            const positivePct = total > 0 ? Math.round((positiveVotes / total) * 100) : 0;
+
+            let mutuText = "SANGAT BAIK (A)";
+            if (scorePercent >= 88.31) mutuText = "SANGAT BAIK (A)";
+            else if (scorePercent >= 76.61) mutuText = "BAIK (B)";
+            else if (scorePercent >= 65.00) mutuText = "CUKUP (C)";
+            else mutuText = "KURANG (D)";
+
+            const labels = {
+                5: 'Sangat Puas',
+                4: 'Puas',
+                3: 'Cukup',
+                2: 'Kurang Puas'
+            };
+
+            let csvContent = "data:text/csv;charset=utf-8,\uFEFF";
+            csvContent += "REKAPAN HASIL SURVEI INDEKS KEPUASAN MASYARAKAT (IKM) DESA EKASARI\n";
+            csvContent += `Tanggal Ekspor,${new Date().toLocaleDateString('id-ID')} ${new Date().toLocaleTimeString('id-ID')}\n\n`;
+
+            csvContent += "RINGKASAN INDIKATOR KINERJA\n";
+            csvContent += `Mutu Pelayanan,${mutuText}\n`;
+            csvContent += `Total Responden,${total} Warga\n`;
+            csvContent += `Indeks Kepuasan Pelayanan (IKM),${scorePercent}%\n`;
+            csvContent += `Tingkat Kepuasan Positif,${positivePct}%\n`;
+            csvContent += `Skor Rerata Kinerja,${avgScore} / 5.0\n\n`;
+
+            csvContent += "RINCIAN DISTRIBUSI KATEGORI EMOSI\n";
+            csvContent += "Kategori Respons,Bobot Nilai,Jumlah Suara,Persentase (%)\n";
+
+            [5, 4, 3, 2].forEach(i => {
+                const count = surveyCounts[i] || 0;
+                const pct = total > 0 ? ((count / total) * 100).toFixed(1) : "0.0";
+                csvContent += `"${labels[i]}",${i},${count},${pct}%\n`;
+            });
+
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", `Rekapan_Survei_IKM_Desa_Ekasari_${new Date().toISOString().slice(0,10)}.csv`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            showToast('Rekapan survei berhasil diekspor ke file Excel!');
+        }
+
+        // Charts Initialization & Updates
+        function initCharts() {
+            const ctx1 = document.getElementById('purposeChart').getContext('2d');
+            purposeChartInstance = new Chart(ctx1, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Kependudukan', 'Surat Keterangan', 'PBB & Aset', 'Konsultasi', 'Dinas/Lainnya'],
+                    datasets: [{
+                        data: [1, 1, 0, 0, 1],
+                        backgroundColor: ['#10b981', '#3b82f6', '#f59e0b', '#ec4899', '#8b5cf6'],
+                        borderWidth: 3,
+                        borderColor: '#ffffff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom', labels: { font: { family: 'Plus Jakarta Sans', size: 11, weight: 'bold' } } }
+                    }
+                }
+            });
+
+            const ctx2 = document.getElementById('statusChart').getContext('2d');
+            statusChartInstance = new Chart(ctx2, {
+                type: 'bar',
+                data: {
+                    labels: ['Menunggu', 'Sedang Dilayani', 'Selesai'],
+                    datasets: [{
+                        label: 'Jumlah Tamu',
+                        data: [1, 1, 1],
+                        backgroundColor: ['#f59e0b', '#0ea5e9', '#10b981'],
+                        borderRadius: 12
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: { beginAtZero: true, ticks: { stepSize: 1, font: { weight: 'bold' } } },
+                        x: { ticks: { font: { weight: 'bold' } } }
+                    },
+                    plugins: {
+                        legend: { display: false }
+                    }
+                }
+            });
+
+            const ctx3 = document.getElementById('surveyAnalyticsChart').getContext('2d');
+            surveyChartInstance = new Chart(ctx3, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Sangat Puas', 'Puas', 'Cukup', 'Kurang Puas'],
+                    datasets: [{
+                        data: [surveyCounts[5] || 0, surveyCounts[4] || 0, surveyCounts[3] || 0, surveyCounts[2] || 0],
+                        backgroundColor: ['#0d9488', '#10b981', '#f59e0b', '#f97316'],
+                        borderWidth: 3,
+                        borderColor: '#ffffff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom', labels: { font: { family: 'Plus Jakarta Sans', size: 11, weight: 'bold' } } }
+                    }
+                }
+            });
+        }
+
+        function updateCharts() {
+            if (!purposeChartInstance || !statusChartInstance) return;
+
+            const pCounts = {
+                'Kependudukan': 0,
+                'Surat Keterangan': 0,
+                'PBB & Aset': 0,
+                'Konsultasi': 0,
+                'Dinas/Lainnya': 0
+            };
+
+            guests.forEach(g => {
+                if (g.purpose.includes('Kependudukan')) pCounts['Kependudukan']++;
+                else if (g.purpose.includes('Surat')) pCounts['Surat Keterangan']++;
+                else if (g.purpose.includes('PBB')) pCounts['PBB & Aset']++;
+                else if (g.purpose.includes('Konsultasi')) pCounts['Konsultasi']++;
+                else pCounts['Dinas/Lainnya']++;
+            });
+
+            purposeChartInstance.data.datasets[0].data = Object.values(pCounts);
+            purposeChartInstance.update();
+
+            const sCounts = { 'Menunggu': 0, 'Sedang Dilayani': 0, 'Selesai': 0 };
+            guests.forEach(g => {
+                if (sCounts[g.status] !== undefined) sCounts[g.status]++;
+            });
+
+            statusChartInstance.data.datasets[0].data = Object.values(sCounts);
+            statusChartInstance.update();
+
+            if (surveyChartInstance) {
+                surveyChartInstance.data.datasets[0].data = [
+                    surveyCounts[5] || 0,
+                    surveyCounts[4] || 0,
+                    surveyCounts[3] || 0,
+                    surveyCounts[2] || 0
+                ];
+                surveyChartInstance.update();
+            }
+        }
+    </script>
+</body>
+</html>
