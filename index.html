@@ -249,83 +249,19 @@
                             <p class="text-[11px] text-slate-500">Akses cepat ke portal resmi, e-Government, dan layanan publik digital</p>
                         </div>
                     </div>
-                    <span class="text-[10px] font-bold uppercase tracking-wider text-teal-700 bg-teal-50 px-2.5 py-1 rounded-full border border-teal-200 hidden sm:inline-flex items-center gap-1">
-                        <i class="fa-solid fa-earth-asia"></i> 6 Tautan Terhubung
-                    </span>
+                    <div class="flex items-center gap-2">
+                        <button onclick="openPortalModal()" class="px-3.5 py-1.5 rounded-xl text-xs font-extrabold bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white shadow-sm transition flex items-center gap-1.5">
+                            <i class="fa-solid fa-pen-to-square"></i> Kelola Portal
+                        </button>
+                        <span id="portalCountBadge" class="text-[10px] font-bold uppercase tracking-wider text-teal-700 bg-teal-50 px-2.5 py-1 rounded-full border border-teal-200 hidden sm:inline-flex items-center gap-1">
+                            <i class="fa-solid fa-earth-asia"></i> <span id="portalCountText">6 Tautan Terhubung</span>
+                        </span>
+                    </div>
                 </div>
 
-                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
-                    <!-- Link 1: Website Desa -->
-                    <a href="https://ekasari.desa.id" target="_blank" rel="noopener noreferrer" 
-                       class="group p-3 rounded-2xl bg-gradient-to-b from-slate-50 to-emerald-50/30 hover:to-emerald-100/50 border border-slate-200/80 hover:border-emerald-300 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md flex flex-col items-center text-center">
-                        <div class="w-10 h-10 rounded-xl bg-emerald-500 text-white flex items-center justify-center text-base shadow-sm group-hover:scale-110 transition-transform duration-200 mb-2">
-                            <i class="fa-solid fa-globe"></i>
-                        </div>
-                        <span class="text-xs font-extrabold text-slate-800 group-hover:text-emerald-700 transition line-clamp-1">Website Desa</span>
-                        <span class="text-[10px] text-slate-400 font-medium flex items-center gap-1 mt-0.5">
-                            ekasari.desa.id <i class="fa-solid fa-arrow-up-right-from-square text-[8px] opacity-70"></i>
-                        </span>
-                    </a>
-
-                    <!-- Link 2: Portal SID -->
-                    <a href="https://sid.ekasari.desa.id" target="_blank" rel="noopener noreferrer" 
-                       class="group p-3 rounded-2xl bg-gradient-to-b from-slate-50 to-blue-50/30 hover:to-blue-100/50 border border-slate-200/80 hover:border-blue-300 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md flex flex-col items-center text-center">
-                        <div class="w-10 h-10 rounded-xl bg-blue-500 text-white flex items-center justify-center text-base shadow-sm group-hover:scale-110 transition-transform duration-200 mb-2">
-                            <i class="fa-solid fa-laptop-code"></i>
-                        </div>
-                        <span class="text-xs font-extrabold text-slate-800 group-hover:text-blue-700 transition line-clamp-1">Portal SID Mandiri</span>
-                        <span class="text-[10px] text-slate-400 font-medium flex items-center gap-1 mt-0.5">
-                            Layanan Warga <i class="fa-solid fa-arrow-up-right-from-square text-[8px] opacity-70"></i>
-                        </span>
-                    </a>
-
-                    <!-- Link 3: Pemkab Jembrana -->
-                    <a href="https://jembranakab.go.id" target="_blank" rel="noopener noreferrer" 
-                       class="group p-3 rounded-2xl bg-gradient-to-b from-slate-50 to-amber-50/30 hover:to-amber-100/50 border border-slate-200/80 hover:border-amber-300 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md flex flex-col items-center text-center">
-                        <div class="w-10 h-10 rounded-xl bg-amber-500 text-white flex items-center justify-center text-base shadow-sm group-hover:scale-110 transition-transform duration-200 mb-2">
-                            <i class="fa-solid fa-landmark"></i>
-                        </div>
-                        <span class="text-xs font-extrabold text-slate-800 group-hover:text-amber-700 transition line-clamp-1">Pemkab Jembrana</span>
-                        <span class="text-[10px] text-slate-400 font-medium flex items-center gap-1 mt-0.5">
-                            jembranakab.go.id <i class="fa-solid fa-arrow-up-right-from-square text-[8px] opacity-70"></i>
-                        </span>
-                    </a>
-
-                    <!-- Link 4: Disdukcapil Jembrana -->
-                    <a href="https://disdukcapil.jembranakab.go.id" target="_blank" rel="noopener noreferrer" 
-                       class="group p-3 rounded-2xl bg-gradient-to-b from-slate-50 to-teal-50/30 hover:to-teal-100/50 border border-slate-200/80 hover:border-teal-300 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md flex flex-col items-center text-center">
-                        <div class="w-10 h-10 rounded-xl bg-teal-600 text-white flex items-center justify-center text-base shadow-sm group-hover:scale-110 transition-transform duration-200 mb-2">
-                            <i class="fa-solid fa-address-card"></i>
-                        </div>
-                        <span class="text-xs font-extrabold text-slate-800 group-hover:text-teal-700 transition line-clamp-1">Disdukcapil Online</span>
-                        <span class="text-[10px] text-slate-400 font-medium flex items-center gap-1 mt-0.5">
-                            Adminduk <i class="fa-solid fa-arrow-up-right-from-square text-[8px] opacity-70"></i>
-                        </span>
-                    </a>
-
-                    <!-- Link 5: SP4N LAPOR! -->
-                    <a href="https://lapor.go.id" target="_blank" rel="noopener noreferrer" 
-                       class="group p-3 rounded-2xl bg-gradient-to-b from-slate-50 to-rose-50/30 hover:to-rose-100/50 border border-slate-200/80 hover:border-rose-300 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md flex flex-col items-center text-center">
-                        <div class="w-10 h-10 rounded-xl bg-rose-500 text-white flex items-center justify-center text-base shadow-sm group-hover:scale-110 transition-transform duration-200 mb-2">
-                            <i class="fa-solid fa-bullhorn"></i>
-                        </div>
-                        <span class="text-xs font-extrabold text-slate-800 group-hover:text-rose-700 transition line-clamp-1">SP4N-LAPOR!</span>
-                        <span class="text-[10px] text-slate-400 font-medium flex items-center gap-1 mt-0.5">
-                            Aduan Warga <i class="fa-solid fa-arrow-up-right-from-square text-[8px] opacity-70"></i>
-                        </span>
-                    </a>
-
-                    <!-- Link 6: Cek Bansos Kemensos -->
-                    <a href="https://cekbansos.kemensos.go.id" target="_blank" rel="noopener noreferrer" 
-                       class="group p-3 rounded-2xl bg-gradient-to-b from-slate-50 to-purple-50/30 hover:to-purple-100/50 border border-slate-200/80 hover:border-purple-300 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md flex flex-col items-center text-center">
-                        <div class="w-10 h-10 rounded-xl bg-purple-500 text-white flex items-center justify-center text-base shadow-sm group-hover:scale-110 transition-transform duration-200 mb-2">
-                            <i class="fa-solid fa-hand-holding-heart"></i>
-                        </div>
-                        <span class="text-xs font-extrabold text-slate-800 group-hover:text-purple-700 transition line-clamp-1">Cek Bansos DTKS</span>
-                        <span class="text-[10px] text-slate-400 font-medium flex items-center gap-1 mt-0.5">
-                            Kemensos RI <i class="fa-solid fa-arrow-up-right-from-square text-[8px] opacity-70"></i>
-                        </span>
-                    </a>
+                <!-- Dynamic Grid for Portal Links -->
+                <div id="portalLinksGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+                    <!-- Populated dynamically via JavaScript -->
                 </div>
 
                 <!-- Sub-strip: Sosial Media Resmi Desa Ekasari -->
@@ -568,7 +504,12 @@
             <!-- Buku Tamu Internal Navigation Header Bar -->
             <div class="bg-white rounded-3xl p-4 sm:p-5 shadow-lg border border-slate-200/80 flex flex-col sm:flex-row items-center justify-between gap-4">
                 <div class="flex items-center gap-3">
-                    <div class="w-12 h-12 bg-gradient-to-br from-emerald-500 to-teal-700 text-white rounded-2xl flex items-center justify-center text-xl shadow-md">
+                    <!-- Home / Kembali Button -->
+                    <button onclick="switchTab('dashboard')" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200/80 px-3.5 py-2.5 rounded-2xl text-xs font-extrabold transition shadow-sm flex items-center gap-2 group shrink-0" title="Kembali ke Beranda Utama">
+                        <i class="fa-solid fa-house text-emerald-600 group-hover:scale-110 transition-transform"></i>
+                        <span class="hidden sm:inline">Beranda</span>
+                    </button>
+                    <div class="w-12 h-12 bg-gradient-to-br from-emerald-500 to-teal-700 text-white rounded-2xl flex items-center justify-center text-xl shadow-md shrink-0">
                         <i class="fa-solid fa-book-open-reader"></i>
                     </div>
                     <div>
@@ -578,11 +519,15 @@
                 </div>
 
                 <!-- Sub-toggle buttons -->
-                <div class="flex bg-slate-100 p-1.5 rounded-2xl border border-slate-200 w-full sm:w-auto">
-                    <button onclick="switchBukuTamuSection('input')" id="subbtn-input" class="flex-1 sm:flex-none px-5 py-2.5 rounded-xl text-xs font-extrabold transition shadow-sm bg-white text-emerald-900 flex items-center justify-center gap-2">
+                <div class="flex bg-slate-100 p-1.5 rounded-2xl border border-slate-200 w-full sm:w-auto items-center gap-1">
+                    <button onclick="switchTab('dashboard')" class="px-3 py-2.5 rounded-xl text-xs font-extrabold transition text-slate-600 hover:bg-white hover:text-emerald-700 flex items-center justify-center gap-1.5" title="Kembali ke Beranda Utama">
+                        <i class="fa-solid fa-house text-emerald-600"></i> Beranda
+                    </button>
+                    <div class="w-px h-5 bg-slate-300 my-auto"></div>
+                    <button onclick="switchBukuTamuSection('input')" id="subbtn-input" class="flex-1 sm:flex-none px-4 py-2.5 rounded-xl text-xs font-extrabold transition shadow-sm bg-white text-emerald-900 flex items-center justify-center gap-2">
                         <i class="fa-solid fa-pen-to-square text-emerald-600"></i> Form Registrasi Tamu
                     </button>
-                    <button onclick="switchBukuTamuSection('list')" id="subbtn-list" class="flex-1 sm:flex-none px-5 py-2.5 rounded-xl text-xs font-extrabold transition text-slate-600 hover:text-slate-900 flex items-center justify-center gap-2">
+                    <button onclick="switchBukuTamuSection('list')" id="subbtn-list" class="flex-1 sm:flex-none px-4 py-2.5 rounded-xl text-xs font-extrabold transition text-slate-600 hover:text-slate-900 flex items-center justify-center gap-2">
                         <i class="fa-solid fa-rectangle-list text-cyan-600"></i> Daftar Kunjungan Hari Ini
                     </button>
                 </div>
@@ -794,14 +739,20 @@
             <div id="buku-section-list" class="hidden bg-white rounded-3xl shadow-xl border border-slate-200/80 overflow-hidden">
                 <!-- Table Header & Controls -->
                 <div class="p-6 border-b border-slate-200/80 bg-gradient-to-r from-slate-50 via-teal-50/20 to-slate-50 flex flex-col md:flex-row md:items-center justify-between gap-4">
-                    <div>
-                        <h3 class="text-xl font-extrabold text-slate-900 flex items-center gap-2.5">
-                            <span class="w-9 h-9 bg-teal-100 rounded-xl flex items-center justify-center text-teal-700 text-lg">
-                                <i class="fa-solid fa-list-check"></i>
-                            </span>
-                            Riwayat Kunjungan Tamu Hari Ini
-                        </h3>
-                        <p class="text-xs text-slate-500 mt-1">Kelola dan pantau proses pelayanan masyarakat secara real-time</p>
+                    <div class="flex items-center gap-3">
+                        <button onclick="switchTab('dashboard')" class="bg-white hover:bg-emerald-50 text-slate-700 hover:text-emerald-800 border border-slate-200 px-3 py-2 rounded-xl text-xs font-extrabold transition shadow-sm flex items-center gap-2 shrink-0 group" title="Kembali ke Beranda Utama">
+                            <i class="fa-solid fa-arrow-left text-emerald-600 group-hover:-translate-x-0.5 transition-transform"></i>
+                            <span>Beranda</span>
+                        </button>
+                        <span class="w-9 h-9 bg-teal-100 rounded-xl flex items-center justify-center text-teal-700 text-lg shrink-0">
+                            <i class="fa-solid fa-list-check"></i>
+                        </span>
+                        <div>
+                            <h3 class="text-xl font-extrabold text-slate-900 flex items-center gap-2.5">
+                                Riwayat Kunjungan Tamu Hari Ini
+                            </h3>
+                            <p class="text-xs text-slate-500 mt-1">Kelola dan pantau proses pelayanan masyarakat secara real-time</p>
+                        </div>
                     </div>
 
                     <!-- Search & Filter Bar -->
@@ -952,23 +903,133 @@
                 </div>
             </div>
 
-            <h3 id="modalTitle" class="text-xl sm:text-2xl font-black text-slate-900 tracking-tight mt-1">Terima Kasih!</h3>
-            <div id="modalBadge" class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-black my-2 border">
-                <span id="modalRatingText">Sangat Puas</span>
+            <!-- Modal Content & Badge -->
+            <div>
+                <div id="modalBadge" class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-black my-2 border">
+                    <i class="fa-solid fa-heart text-rose-500"></i>
+                    <span id="modalRatingText">Sangat Puas</span>
+                </div>
+                <h3 id="modalTitle" class="text-xl font-extrabold text-slate-900 mt-1">Terima Kasih Banyak!</h3>
+                <p id="modalMessage" class="text-xs text-slate-600 mt-2 leading-relaxed max-w-xs mx-auto">
+                    Senang dapat melayani Anda dengan baik! Kebahagiaan dan kepuasan warga adalah prioritas utama pelayanan kami.
+                </p>
             </div>
 
-            <p id="modalMessage" class="text-xs sm:text-sm text-slate-600 mt-2 font-medium leading-relaxed">
-                Penilaian Anda sangat berharga untuk meningkatkan kualitas pelayanan publik di Kantor Desa Ekasari.
-            </p>
-
-            <!-- Auto Close Progress Indicator -->
-            <div class="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden my-5">
-                <div id="modalProgressBar" class="h-full bg-gradient-to-r from-emerald-500 to-teal-400 transition-all duration-[3500ms] ease-linear" style="width: 100%"></div>
+            <!-- Countdown Progress Bar -->
+            <div class="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden mt-6">
+                <div id="modalProgressBar" class="h-full bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-[3500ms] ease-linear" style="width: 100%;"></div>
             </div>
 
-            <button onclick="closeSurveyModal()" class="w-full bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700 hover:from-emerald-700 hover:to-teal-800 text-white font-extrabold py-3.5 px-6 rounded-2xl transition shadow-lg shadow-emerald-600/30 text-xs sm:text-sm flex items-center justify-center gap-2">
-                <i class="fa-solid fa-circle-check text-emerald-200"></i> Tutup & Lanjutkan
+            <!-- Manual Close Button -->
+            <button onclick="closeSurveyModal()" class="mt-5 w-full py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-extrabold text-xs transition shadow-sm">
+                Tutup & Lanjutkan
             </button>
+        </div>
+    </div>
+
+    <!-- Modal Kelola Portal Website Layanan Desa -->
+    <div id="portalModal" onclick="if(event.target === this) closePortalModal()" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/60 backdrop-blur-md hidden opacity-0 transition-opacity duration-300">
+        <div id="portalModalCard" class="bg-white rounded-3xl p-6 max-w-2xl w-full shadow-2xl border border-slate-100 transform scale-90 transition-all duration-300 relative overflow-hidden max-h-[90vh] flex flex-col">
+            <!-- Modal Header -->
+            <div class="flex items-center justify-between pb-4 border-b border-slate-100 shrink-0">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-2xl bg-teal-100 text-teal-700 flex items-center justify-center text-lg font-bold">
+                        <i class="fa-solid fa-sliders"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-base font-extrabold text-slate-900">Kelola Tautan Portal & Layanan</h3>
+                        <p class="text-xs text-slate-500">Tambah, ubah, atau hapus link portal resmi Desa Ekasari</p>
+                    </div>
+                </div>
+                <button onclick="closePortalModal()" class="w-8 h-8 rounded-full bg-slate-100 text-slate-500 hover:bg-slate-200 hover:text-slate-800 flex items-center justify-center text-sm font-bold transition">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Scrollable Content -->
+            <div class="py-4 overflow-y-auto custom-scrollbar flex-1 space-y-5">
+                <!-- Action Header -->
+                <div class="flex items-center justify-between">
+                    <h4 class="text-xs font-extrabold text-slate-700 uppercase tracking-wider flex items-center gap-1.5">
+                        <i class="fa-solid fa-list text-teal-600"></i> Daftar Portal Aktif
+                    </h4>
+                    <button onclick="showPortalForm()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs px-3 py-1.5 rounded-xl transition shadow-sm flex items-center gap-1.5">
+                        <i class="fa-solid fa-plus"></i> Tambah Portal Baru
+                    </button>
+                </div>
+
+                <!-- Form Add / Edit (hidden by default) -->
+                <div id="portalFormContainer" class="hidden p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-4">
+                    <div class="flex items-center justify-between">
+                        <h5 id="portalFormTitle" class="text-xs font-extrabold text-slate-800 uppercase tracking-wider">Tambah Portal Baru</h5>
+                        <button onclick="hidePortalForm()" class="text-slate-400 hover:text-slate-600 text-xs font-bold">
+                            Batal
+                        </button>
+                    </div>
+                    <form id="portalItemForm" onsubmit="handlePortalFormSubmit(event)" class="space-y-3">
+                        <input type="hidden" id="portalEditId" value="">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-[11px] font-extrabold text-slate-700 mb-1">Judul Portal / Layanan <span class="text-rose-500">*</span></label>
+                                <input type="text" id="portalInputTitle" required placeholder="Contoh: SIKS-NG Desa" class="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs font-medium focus:ring-2 focus:ring-emerald-500 outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-extrabold text-slate-700 mb-1">Keterangan Singkat / Subtitle <span class="text-rose-500">*</span></label>
+                                <input type="text" id="portalInputDesc" required placeholder="Contoh: Layanan Bansos" class="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs font-medium focus:ring-2 focus:ring-emerald-500 outline-none">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-[11px] font-extrabold text-slate-700 mb-1">Alamat Web URL <span class="text-rose-500">*</span></label>
+                            <input type="url" id="portalInputUrl" required placeholder="https://ekasari.desa.id" class="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs font-medium focus:ring-2 focus:ring-emerald-500 outline-none">
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-[11px] font-extrabold text-slate-700 mb-1">Ikon Visual</label>
+                                <select id="portalInputIcon" class="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs font-bold text-slate-700 focus:ring-2 focus:ring-emerald-500 outline-none">
+                                    <option value="fa-globe">🌐 Globe / Website Resmi</option>
+                                    <option value="fa-laptop-code">💻 Computer / Portal SID</option>
+                                    <option value="fa-landmark">🏛️ Landmark / Pemkab</option>
+                                    <option value="fa-address-card">🪪 ID Card / Disdukcapil</option>
+                                    <option value="fa-bullhorn">📢 Bullhorn / Aduan SP4N</option>
+                                    <option value="fa-hand-holding-heart">🤲 Heart / Bansos Kemensos</option>
+                                    <option value="fa-folder-open">📁 Folder / Arsip Surat</option>
+                                    <option value="fa-shield-halved">🛡️ Shield / Keamanan</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-extrabold text-slate-700 mb-1">Tema Warna</label>
+                                <select id="portalInputTheme" class="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs font-bold text-slate-700 focus:ring-2 focus:ring-emerald-500 outline-none">
+                                    <option value="emerald">🟢 Emerald Green</option>
+                                    <option value="blue">🔵 Royal Blue</option>
+                                    <option value="amber">🟠 Amber Orange</option>
+                                    <option value="teal">🩵 Teal Cyan</option>
+                                    <option value="rose">🔴 Rose Red</option>
+                                    <option value="purple">🟣 Violet Purple</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="pt-2 flex justify-end gap-2">
+                            <button type="button" onclick="hidePortalForm()" class="px-3 py-2 rounded-xl border border-slate-300 text-slate-600 text-xs font-bold hover:bg-slate-100">Batal</button>
+                            <button type="submit" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-extrabold shadow-sm">Simpan Link</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Existing Items List -->
+                <div id="portalItemsList" class="space-y-2">
+                    <!-- Populated dynamically -->
+                </div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="pt-4 border-t border-slate-100 flex items-center justify-between shrink-0">
+                <button onclick="resetPortalsDefault()" class="text-rose-600 hover:text-rose-700 font-bold text-xs flex items-center gap-1.5 bg-rose-50 hover:bg-rose-100 px-3 py-1.5 rounded-xl border border-rose-200">
+                    <i class="fa-solid fa-rotate-left"></i> Reset ke Default
+                </button>
+                <button onclick="closePortalModal()" class="bg-slate-900 hover:bg-slate-800 text-white font-extrabold text-xs px-5 py-2 rounded-xl shadow-sm">
+                    Selesai
+                </button>
+            </div>
         </div>
     </div>
 
@@ -981,6 +1042,7 @@
         // Global State & Database Setup
         const LOCAL_KEY = 'ekasari_guestbook_v3_color';
         const SURVEY_KEY = 'ekasari_survey_votes_v1';
+        const PORTAL_KEY = 'ekasari_portal_links_v2';
         const appId = typeof __app_id !== 'undefined' ? __app_id : 'ekasari-guestbook-app';
         let db = null;
         let auth = null;
@@ -989,53 +1051,36 @@
         let isCloudStorage = false;
 
         let guests = [];
-        let surveyCounts = { 2: 1, 3: 5, 4: 18, 5: 34 };
+        let surveyCounts = { 2: 0, 3: 0, 4: 0, 5: 0 };
+
+        // Portal Links Default Setup
+        const defaultPortalLinks = [
+            { id: 'p1', title: 'Website Desa', url: 'https://ekasari.desa.id', desc: 'ekasari.desa.id', icon: 'fa-globe', theme: 'emerald' },
+            { id: 'p2', title: 'Portal SID Mandiri', url: 'https://sid.ekasari.desa.id', desc: 'Layanan Warga', icon: 'fa-laptop-code', theme: 'blue' },
+            { id: 'p3', title: 'Pemkab Jembrana', url: 'https://jembranakab.go.id', desc: 'jembranakab.go.id', icon: 'fa-landmark', theme: 'amber' },
+            { id: 'p4', title: 'Disdukcapil Online', url: 'https://disdukcapil.jembranakab.go.id', desc: 'Adminduk', icon: 'fa-address-card', theme: 'teal' },
+            { id: 'p5', title: 'SP4N-LAPOR!', url: 'https://lapor.go.id', desc: 'Aduan Warga', icon: 'fa-bullhorn', theme: 'rose' },
+            { id: 'p6', title: 'Cek Bansos DTKS', url: 'https://cekbansos.kemensos.go.id', desc: 'Kemensos RI', icon: 'fa-hand-holding-heart', theme: 'purple' }
+        ];
+
+        let portalLinks = [];
+
+        const sampleGuests = [];
+
+        const themeMap = {
+            emerald: { bgCard: 'from-slate-50 to-emerald-50/30 hover:to-emerald-100/50', borderCard: 'hover:border-emerald-300', iconBg: 'bg-emerald-500', textHover: 'group-hover:text-emerald-700' },
+            blue: { bgCard: 'from-slate-50 to-blue-50/30 hover:to-blue-100/50', borderCard: 'hover:border-blue-300', iconBg: 'bg-blue-500', textHover: 'group-hover:text-blue-700' },
+            amber: { bgCard: 'from-slate-50 to-amber-50/30 hover:to-amber-100/50', borderCard: 'hover:border-amber-300', iconBg: 'bg-amber-500', textHover: 'group-hover:text-amber-700' },
+            teal: { bgCard: 'from-slate-50 to-teal-50/30 hover:to-teal-100/50', borderCard: 'hover:border-teal-300', iconBg: 'bg-teal-600', textHover: 'group-hover:text-teal-700' },
+            rose: { bgCard: 'from-slate-50 to-rose-50/30 hover:to-rose-100/50', borderCard: 'hover:border-rose-300', iconBg: 'bg-rose-500', textHover: 'group-hover:text-rose-700' },
+            purple: { bgCard: 'from-slate-50 to-purple-50/30 hover:to-purple-100/50', borderCard: 'hover:border-purple-300', iconBg: 'bg-purple-500', textHover: 'group-hover:text-purple-700' }
+        };
+
         let purposeChartInstance = null;
         let statusChartInstance = null;
         let surveyChartInstance = null;
 
-        // Sample Data Fallback
-        const sampleGuests = [
-            {
-                id: 'EKS-001',
-                time: '08:15',
-                date: new Date().toLocaleDateString('id-ID'),
-                name: 'I Gede Putu Sutama',
-                phone: '081987654321',
-                type: 'Warga Desa',
-                address: 'Dusun Ekasari Kauh',
-                purpose: 'Administrasi Kependudukan (KTP/KK)',
-                destination: 'Kaur Pemerintahan',
-                notes: 'Pengurusan pembaruan KK baru',
-                status: 'Selesai'
-            },
-            {
-                id: 'EKS-002',
-                time: '09:30',
-                date: new Date().toLocaleDateString('id-ID'),
-                name: 'Ni Made Ratnasari',
-                phone: '082145678901',
-                type: 'Warga Desa',
-                address: 'Banjar Tirta Sari',
-                purpose: 'Permohonan Surat Keterangan / Pengantar',
-                destination: 'Kasi Pelayanan & Kesejahteraan',
-                notes: 'Surat Keterangan Usaha UMKM Kuliner',
-                status: 'Sedang Dilayani'
-            },
-            {
-                id: 'EKS-003',
-                time: '10:05',
-                date: new Date().toLocaleDateString('id-ID'),
-                name: 'Drs. Anom Wijaya',
-                phone: '081233445566',
-                type: 'Instansi / Dinas',
-                address: 'Dinas Pemberdayaan Masyarakat Jembrana',
-                purpose: 'Koordinasi Dinas / Pertemuan Resmi',
-                destination: 'Perbekel / Kepala Desa',
-                notes: 'Membahas evaluasi dana desa',
-                status: 'Menunggu'
-            }
-        ];
+        // ... existing sampleGuests array ...
 
         // Global Window Exposure
         window.switchTab = switchTab;
@@ -1050,14 +1095,238 @@
         window.submitSurvey = submitSurvey;
         window.closeSurveyModal = closeSurveyModal;
 
+        // Expose Portal Management Functions
+        window.openPortalModal = openPortalModal;
+        window.closePortalModal = closePortalModal;
+        window.showPortalForm = showPortalForm;
+        window.hidePortalForm = hidePortalForm;
+        window.editPortalItem = editPortalItem;
+        window.deletePortalItem = deletePortalItem;
+        window.resetPortalsDefault = resetPortalsDefault;
+        window.handlePortalFormSubmit = handlePortalFormSubmit;
+
         let surveyModalTimer = null;
 
         window.onload = async function() {
             startClock();
             initCharts();
             loadSurveyLocal();
+            loadPortalLinks();
             await initStorage();
         };
+
+        function loadPortalLinks() {
+            const saved = localStorage.getItem(PORTAL_KEY);
+            if (saved) {
+                try {
+                    portalLinks = JSON.parse(saved);
+                } catch(e) {
+                    portalLinks = [...defaultPortalLinks];
+                }
+            } else {
+                portalLinks = [...defaultPortalLinks];
+                savePortalLinks();
+            }
+            renderPortalLinks();
+        }
+
+        function savePortalLinks() {
+            localStorage.setItem(PORTAL_KEY, JSON.stringify(portalLinks));
+            if (isCloudStorage && db) {
+                try {
+                    const configRef = doc(db, 'artifacts', appId, 'public', 'data', 'config', 'portals');
+                    setDoc(configRef, { links: portalLinks });
+                } catch(e) {
+                    console.warn("Gagal sinkron portal ke cloud:", e);
+                }
+            }
+        }
+
+        function renderPortalLinks() {
+            const grid = document.getElementById('portalLinksGrid');
+            if (!grid) return;
+
+            if (portalLinks.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full p-6 text-center text-slate-400 bg-slate-50 rounded-2xl border border-dashed border-slate-200">
+                        <i class="fa-solid fa-link-slash text-2xl mb-1"></i>
+                        <p class="text-xs font-bold">Belum ada portal link yang ditambahkan.</p>
+                        <button onclick="openPortalModal()" class="mt-2 text-xs font-extrabold text-teal-600 hover:underline">+ Kelola & Tambah Portal</button>
+                    </div>
+                `;
+            } else {
+                grid.innerHTML = portalLinks.map(p => {
+                    const t = themeMap[p.theme] || themeMap.emerald;
+                    return `
+                        <a href="${p.url}" target="_blank" rel="noopener noreferrer" 
+                           class="group p-3 rounded-2xl bg-gradient-to-b ${t.bgCard} border border-slate-200/80 ${t.borderCard} transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md flex flex-col items-center text-center">
+                            <div class="w-10 h-10 rounded-xl ${t.iconBg} text-white flex items-center justify-center text-base shadow-sm group-hover:scale-110 transition-transform duration-200 mb-2">
+                                <i class="fa-solid ${p.icon || 'fa-globe'}"></i>
+                            </div>
+                            <span class="text-xs font-extrabold text-slate-800 ${t.textHover} transition line-clamp-1">${p.title}</span>
+                            <span class="text-[10px] text-slate-400 font-medium flex items-center gap-1 mt-0.5">
+                                ${p.desc} <i class="fa-solid fa-arrow-up-right-from-square text-[8px] opacity-70"></i>
+                            </span>
+                        </a>
+                    `;
+                }).join('');
+            }
+
+            const badgeText = document.getElementById('portalCountText');
+            if (badgeText) badgeText.textContent = `${portalLinks.length} Tautan Terhubung`;
+
+            renderPortalModalList();
+        }
+
+        function renderPortalModalList() {
+            const list = document.getElementById('portalItemsList');
+            if (!list) return;
+
+            list.innerHTML = portalLinks.map(p => {
+                const t = themeMap[p.theme] || themeMap.emerald;
+                return `
+                    <div class="p-3 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-between gap-3">
+                        <div class="flex items-center gap-3 overflow-hidden">
+                            <div class="w-9 h-9 rounded-xl ${t.iconBg} text-white flex items-center justify-center text-sm shrink-0 shadow-sm">
+                                <i class="fa-solid ${p.icon || 'fa-globe'}"></i>
+                            </div>
+                            <div class="truncate">
+                                <div class="text-xs font-extrabold text-slate-800 truncate">${p.title}</div>
+                                <div class="text-[10px] text-slate-400 truncate">${p.url} • <span class="font-bold text-slate-500">${p.desc}</span></div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-1 shrink-0">
+                            <button onclick="editPortalItem('${p.id}')" class="p-2 text-amber-600 hover:text-amber-800 rounded-xl bg-amber-50 hover:bg-amber-100 transition text-xs font-bold" title="Edit Portal">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </button>
+                            <button onclick="deletePortalItem('${p.id}')" class="p-2 text-rose-500 hover:text-rose-700 rounded-xl bg-rose-50 hover:bg-rose-100 transition text-xs font-bold" title="Hapus Portal">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function openPortalModal() {
+            const modal = document.getElementById('portalModal');
+            const card = document.getElementById('portalModalCard');
+            if (!modal || !card) return;
+
+            hidePortalForm();
+            renderPortalModalList();
+
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                card.classList.remove('scale-90');
+                card.classList.add('scale-100');
+            }, 10);
+        }
+
+        function closePortalModal() {
+            const modal = document.getElementById('portalModal');
+            const card = document.getElementById('portalModalCard');
+            if (!modal || !card) return;
+
+            modal.classList.add('opacity-0');
+            card.classList.remove('scale-100');
+            card.classList.add('scale-90');
+
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        function showPortalForm(item = null) {
+            const container = document.getElementById('portalFormContainer');
+            const titleEl = document.getElementById('portalFormTitle');
+            const editId = document.getElementById('portalEditId');
+            const titleInput = document.getElementById('portalInputTitle');
+            const descInput = document.getElementById('portalInputDesc');
+            const urlInput = document.getElementById('portalInputUrl');
+            const iconSelect = document.getElementById('portalInputIcon');
+            const themeSelect = document.getElementById('portalInputTheme');
+
+            if (item) {
+                titleEl.textContent = 'Edit Portal Website';
+                editId.value = item.id;
+                titleInput.value = item.title;
+                descInput.value = item.desc;
+                urlInput.value = item.url;
+                iconSelect.value = item.icon || 'fa-globe';
+                themeSelect.value = item.theme || 'emerald';
+            } else {
+                titleEl.textContent = 'Tambah Portal Baru';
+                editId.value = '';
+                document.getElementById('portalItemForm').reset();
+            }
+
+            container.classList.remove('hidden');
+        }
+
+        function hidePortalForm() {
+            const container = document.getElementById('portalFormContainer');
+            if (container) container.classList.add('hidden');
+            document.getElementById('portalItemForm').reset();
+        }
+
+        function editPortalItem(id) {
+            const item = portalLinks.find(p => p.id === id);
+            if (item) showPortalForm(item);
+        }
+
+        function deletePortalItem(id) {
+            portalLinks = portalLinks.filter(p => p.id !== id);
+            savePortalLinks();
+            renderPortalLinks();
+            showToast('Link portal berhasil dihapus', 'fa-trash text-rose-400');
+        }
+
+        function resetPortalsDefault() {
+            portalLinks = JSON.parse(JSON.stringify(defaultPortalLinks));
+            savePortalLinks();
+            renderPortalLinks();
+            hidePortalForm();
+            showToast('Portal link dikembalikan ke default');
+        }
+
+        function handlePortalFormSubmit(e) {
+            e.preventDefault();
+            const editId = document.getElementById('portalEditId').value;
+            const title = document.getElementById('portalInputTitle').value.trim();
+            const desc = document.getElementById('portalInputDesc').value.trim();
+            const url = document.getElementById('portalInputUrl').value.trim();
+            const icon = document.getElementById('portalInputIcon').value;
+            const theme = document.getElementById('portalInputTheme').value;
+
+            if (editId) {
+                const item = portalLinks.find(p => p.id === editId);
+                if (item) {
+                    item.title = title;
+                    item.desc = desc;
+                    item.url = url;
+                    item.icon = icon;
+                    item.theme = theme;
+                    showToast('Portal link berhasil diperbarui!');
+                }
+            } else {
+                const newPortal = {
+                    id: 'p_' + Date.now(),
+                    title,
+                    desc,
+                    url,
+                    icon,
+                    theme
+                };
+                portalLinks.push(newPortal);
+                showToast('Portal link baru berhasil ditambahkan!');
+            }
+
+            savePortalLinks();
+            renderPortalLinks();
+            hidePortalForm();
+        }
 
         // Initialize Firebase Storage or Local Fallback
         async function initStorage() {
@@ -1102,9 +1371,9 @@
                     // Realtime Firestore Listener
                     onSnapshot(guestsRef, (snapshot) => {
                         if (snapshot.empty) {
-                            sampleGuests.forEach(async (g) => {
-                                await addDoc(guestsRef, g);
-                            });
+                            guests = [];
+                            renderTable();
+                            updateSummaryCards();
                             return;
                         }
                         guests = snapshot.docs.map(docSnap => ({
@@ -1217,32 +1486,39 @@
 
             const config = surveyConfig[score] || surveyConfig[5];
 
-            emojiEl.textContent = config.emoji;
-            titleEl.textContent = config.title;
-            msgEl.textContent = config.message;
-            badgeText.textContent = label;
-            badgeEl.className = `inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-black my-2 border ${config.badgeBg}`;
-            emojiBox.className = `w-24 h-24 rounded-3xl flex items-center justify-center text-6xl shadow-xl border-2 transform hover:scale-105 transition duration-300 mx-auto ${config.boxBg}`;
-            glow1.className = `absolute -top-16 -left-16 w-48 h-48 rounded-full blur-3xl opacity-30 pointer-events-none ${config.glowColor}`;
-            glow2.className = `absolute -bottom-16 -right-16 w-48 h-48 rounded-full blur-3xl opacity-30 pointer-events-none ${config.glowColor}`;
-            progressBar.className = `h-full bg-gradient-to-r ${config.barColor} transition-all duration-[3500ms] ease-linear`;
+            if (emojiEl) emojiEl.textContent = config.emoji;
+            if (titleEl) titleEl.textContent = config.title;
+            if (msgEl) msgEl.textContent = config.message;
+            if (badgeText) badgeText.textContent = label;
+            if (badgeEl) badgeEl.className = `inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-black my-2 border ${config.badgeBg}`;
+            if (emojiBox) emojiBox.className = `w-24 h-24 rounded-3xl flex items-center justify-center text-6xl shadow-xl border-2 transform hover:scale-105 transition duration-300 mx-auto ${config.boxBg}`;
+            if (glow1) glow1.className = `absolute -top-16 -left-16 w-48 h-48 rounded-full blur-3xl opacity-30 pointer-events-none ${config.glowColor}`;
+            if (glow2) glow2.className = `absolute -bottom-16 -right-16 w-48 h-48 rounded-full blur-3xl opacity-30 pointer-events-none ${config.glowColor}`;
+            
+            if (progressBar) {
+                progressBar.className = `h-full bg-gradient-to-r ${config.barColor} transition-all duration-[3500ms] ease-linear`;
+                progressBar.style.transition = 'none';
+                progressBar.style.width = '100%';
+            }
 
-            // Reset progress bar width
-            progressBar.style.transition = 'none';
-            progressBar.style.width = '100%';
-
-            modal.classList.remove('hidden');
-            setTimeout(() => {
-                modal.classList.remove('opacity-0');
-                card.classList.remove('scale-90');
-                card.classList.add('scale-100');
-
-                // Trigger smooth countdown animation
+            if (modal) {
+                modal.classList.remove('hidden');
                 setTimeout(() => {
-                    progressBar.style.transition = 'width 3500ms linear';
-                    progressBar.style.width = '0%';
-                }, 50);
-            }, 10);
+                    modal.classList.remove('opacity-0');
+                    if (card) {
+                        card.classList.remove('scale-90');
+                        card.classList.add('scale-100');
+                    }
+
+                    // Trigger smooth countdown animation
+                    setTimeout(() => {
+                        if (progressBar) {
+                            progressBar.style.transition = 'width 3500ms linear';
+                            progressBar.style.width = '0%';
+                        }
+                    }, 50);
+                }, 10);
+            }
 
             if (surveyModalTimer) clearTimeout(surveyModalTimer);
             surveyModalTimer = setTimeout(() => {
@@ -1406,10 +1682,10 @@
                 try {
                     guests = JSON.parse(stored);
                 } catch(e) {
-                    guests = sampleGuests;
+                    guests = [];
                 }
             } else {
-                guests = sampleGuests;
+                guests = [];
                 saveLocalGuests();
             }
         }
