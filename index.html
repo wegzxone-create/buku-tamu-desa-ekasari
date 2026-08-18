@@ -1,16 +1,6 @@
 <!DOCTYPE html>
 <html lang="id" class="h-full">
 <head>
-    <script>
-  window.__firebase_config = JSON.stringify({
-    apiKey: "AIzaSy...",
-    authDomain: "buku-tamu-ekasari.firebaseapp.com",
-    projectId: "buku-tamu-ekasari",
-    storageBucket: "buku-tamu-ekasari.firebasestorage.app",
-    messagingSenderId: "123456789",
-    appId: "1:123456789:web:abcdef"
-  });
-</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Buku Tamu Digital - Desa Ekasari</title>
@@ -22,6 +12,18 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- KONFIGURASI FIREBASE (TEMPEL KODE DARI FIREBASE CONSOLE DI SINI) -->
+    <script>
+        window.firebaseConfig = {
+            apiKey: "PASTE_API_KEY_ANDA_DI_SINI",
+            authDomain: "buku-tamu-ekasari.firebaseapp.com",
+            projectId: "buku-tamu-ekasari",
+            storageBucket: "buku-tamu-ekasari.firebasestorage.app",
+            messagingSenderId: "123456789",
+            appId: "1:123456789:web:abcdef"
+        };
+    </script>
 
     <script>
         tailwind.config = {
@@ -143,9 +145,9 @@
 
                 <!-- Database Cloud Connection Status Indicator -->
                 <div class="mt-3 flex items-center justify-end">
-                    <div id="cloudBadge" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-200 border border-emerald-400/30 backdrop-blur-md shadow-sm">
-                        <i class="fa-solid fa-cloud text-emerald-300 animate-pulse"></i>
-                        <span id="cloudStatusText">Menghubungkan Database...</span>
+                    <div id="cloudBadge" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-200 border border-amber-400/30 backdrop-blur-md shadow-sm">
+                        <i class="fa-solid fa-hard-drive text-amber-300"></i>
+                        <span id="cloudStatusText">Penyimpanan Lokal</span>
                     </div>
                 </div>
             </div>
@@ -156,7 +158,7 @@
                 <button onclick="switchTab('dashboard')" id="tab-dashboard" class="px-5 py-3 text-sm font-bold rounded-t-2xl transition-all flex items-center gap-2.5 bg-white text-emerald-900 shadow-xl border-t-2 border-emerald-400">
                     <i class="fa-solid fa-gauge-high text-amber-500 text-base"></i> Dashboard & Survei IKM
                 </button>
-                <!-- TAB 2: BUKU TAMU DIGITAL (NEW MENU PAGE) -->
+                <!-- TAB 2: BUKU TAMU DIGITAL -->
                 <button onclick="switchTab('bukutamu')" id="tab-bukutamu" class="px-5 py-3 text-sm font-bold rounded-t-2xl transition-all flex items-center gap-2.5 text-emerald-100 hover:bg-white/10 hover:text-white">
                     <i class="fa-solid fa-book-bookmark text-emerald-300 text-base"></i> Buku Tamu Digital
                     <span id="badgeCount" class="bg-gradient-to-r from-amber-400 to-amber-500 text-amber-950 text-xs px-2.5 py-0.5 rounded-full font-black shadow-sm ml-1">0</span>
@@ -508,7 +510,7 @@
             </div>
         </div>
 
-        <!-- VIEW 2: HALAMAN DEDIKASI "BUKU TAMU DIGITAL" (NEW MENU PAGE) -->
+        <!-- VIEW 2: HALAMAN DEDIKASI "BUKU TAMU DIGITAL" -->
         <div id="view-bukutamu" class="hidden space-y-6">
             
             <!-- Buku Tamu Internal Navigation Header Bar -->
@@ -1074,8 +1076,6 @@
 
         let portalLinks = [];
 
-        const sampleGuests = [];
-
         const themeMap = {
             emerald: { bgCard: 'from-slate-50 to-emerald-50/30 hover:to-emerald-100/50', borderCard: 'hover:border-emerald-300', iconBg: 'bg-emerald-500', textHover: 'group-hover:text-emerald-700' },
             blue: { bgCard: 'from-slate-50 to-blue-50/30 hover:to-blue-100/50', borderCard: 'hover:border-blue-300', iconBg: 'bg-blue-500', textHover: 'group-hover:text-blue-700' },
@@ -1088,8 +1088,6 @@
         let purposeChartInstance = null;
         let statusChartInstance = null;
         let surveyChartInstance = null;
-
-        // ... existing sampleGuests array ...
 
         // Global Window Exposure
         window.switchTab = switchTab;
@@ -1339,16 +1337,18 @@
 
         // Initialize Firebase Storage or Local Fallback
         async function initStorage() {
-            let firebaseConfig = null;
-            if (typeof __firebase_config !== 'undefined' && __firebase_config) {
+            let firebaseConfig = window.firebaseConfig || null;
+            
+            if (!firebaseConfig && typeof __firebase_config !== 'undefined' && __firebase_config) {
                 try {
-                    firebaseConfig = JSON.parse(__firebase_config);
+                    firebaseConfig = typeof __firebase_config === 'string' ? JSON.parse(__firebase_config) : __firebase_config;
                 } catch(e) {
                     console.warn("Konfigurasi Firebase tidak valid", e);
                 }
             }
 
-            if (firebaseConfig) {
+            // Check if valid Firebase Config exists
+            if (firebaseConfig && firebaseConfig.apiKey && firebaseConfig.apiKey !== "PASTE_API_KEY_ANDA_DI_SINI") {
                 try {
                     const app = initializeApp(firebaseConfig);
                     auth = getAuth(app);
@@ -1360,7 +1360,6 @@
                         await signInAnonymously(auth);
                     }
 
-                    // Strict path rule: /artifacts/{appId}/public/data/guests
                     guestsRef = collection(db, 'artifacts', appId, 'public', 'data', 'guests');
                     surveyRef = doc(db, 'artifacts', appId, 'public', 'data', 'survey', 'votes');
                     isCloudStorage = true;
@@ -1519,7 +1518,6 @@
                         card.classList.add('scale-100');
                     }
 
-                    // Trigger smooth countdown animation
                     setTimeout(() => {
                         if (progressBar) {
                             progressBar.style.transition = 'width 3500ms linear';
@@ -1562,7 +1560,6 @@
                 const countEl = document.getElementById(`surveyCount-${i}`);
                 if (countEl) countEl.textContent = count;
 
-                // Update detail breakdown counts
                 const detailCountEl = document.getElementById(`surveyDetailCount-${i}`);
                 if (detailCountEl) detailCountEl.textContent = count;
             }
@@ -1573,7 +1570,6 @@
             const totalCard = document.getElementById('surveyTotalCard');
             if (totalCard) totalCard.textContent = `${total} Warga`;
 
-            // Calculate score percentages
             const scorePercent = total > 0 ? Math.round((weightedSum / (total * 5)) * 100) : 0;
             const avgScore = total > 0 ? (weightedSum / total).toFixed(1) : "0.0";
 
@@ -1586,13 +1582,11 @@
             const avgScoreEl = document.getElementById('surveyAverageScore');
             if (avgScoreEl) avgScoreEl.textContent = `${avgScore} / 5.0`;
 
-            // Calculate positive rating percentage (Puas & Sangat Puas -> scores 4 & 5)
             const positiveVotes = (surveyCounts[4] || 0) + (surveyCounts[5] || 0);
             const positivePct = total > 0 ? Math.round((positiveVotes / total) * 100) : 0;
             const positiveRateEl = document.getElementById('surveyPositiveRate');
             if (positiveRateEl) positiveRateEl.textContent = `${positivePct}%`;
 
-            // Update percentage bars for each score
             for (let i = 2; i <= 5; i++) {
                 const count = surveyCounts[i] || 0;
                 const pct = total > 0 ? Math.round((count / total) * 100) : 0;
@@ -1604,7 +1598,6 @@
                 if (detailBar) detailBar.style.width = `${pct}%`;
             }
 
-            // Calculate Mutu Pelayanan Grade based on IKM standard
             let mutuText = "SANGAT BAIK (A)";
             let mutuBadge = "A";
             let mutuColor = "text-emerald-600";
@@ -1779,7 +1772,6 @@
                 purpose: document.getElementById('inputPurpose').value,
                 destination: document.getElementById('inputDestination').value,
                 notes: document.getElementById('inputNotes').value.trim() || '-',
-                status: 'Menunggu',
                 createdAt: Date.now()
             };
 
@@ -1800,7 +1792,7 @@
             }
 
             document.getElementById('guestForm').reset();
-            switchBukuTamuSection('list'); // Automatically switch to view table after saving
+            switchBukuTamuSection('list');
         }
 
         // Render Table
@@ -1875,8 +1867,8 @@
         // Summary Cards Update
         function updateSummaryCards() {
             document.getElementById('cardTotalToday').textContent = guests.length;
-            document.getElementById('cardPending').textContent = guests.filter(g => g.status !== 'Selesai').length;
-            document.getElementById('cardCompleted').textContent = guests.filter(g => g.status === 'Selesai').length;
+            document.getElementById('cardPending').textContent = 0;
+            document.getElementById('cardCompleted').textContent = guests.length;
 
             const counts = {};
             guests.forEach(g => counts[g.purpose] = (counts[g.purpose] || 0) + 1);
@@ -1891,29 +1883,9 @@
             document.getElementById('cardTopPurpose').textContent = top.split(' ')[0] || 'Umum';
         }
 
-        // Update Status Handler
+        // Update Status Handler (Legacy support)
         async function updateStatus(identifier, newStatus) {
-            const item = guests.find(g => (g.docId === identifier || g.id === identifier));
-            if (!item) return;
-
-            if (isCloudStorage && item.docId && db) {
-                try {
-                    const itemDoc = doc(db, 'artifacts', appId, 'public', 'data', 'guests', item.docId);
-                    await updateDoc(itemDoc, { status: newStatus });
-                    showToast(`Status ${item.name} berhasil diperbarui!`);
-                } catch(err) {
-                    console.error("Gagal memperbarui status di cloud:", err);
-                    item.status = newStatus;
-                    renderTable();
-                    updateSummaryCards();
-                }
-            } else {
-                item.status = newStatus;
-                saveLocalGuests();
-                updateSummaryCards();
-                renderTable();
-                showToast(`Status tamu ${item.name} diubah ke ${newStatus}`);
-            }
+            renderTable();
         }
 
         // Delete Guest Item
@@ -2061,7 +2033,7 @@
                 data: {
                     labels: ['Kependudukan', 'Surat Keterangan', 'PBB & Aset', 'Konsultasi', 'Dinas/Lainnya'],
                     datasets: [{
-                        data: [1, 1, 0, 0, 1],
+                        data: [0, 0, 0, 0, 0],
                         backgroundColor: ['#10b981', '#3b82f6', '#f59e0b', '#ec4899', '#8b5cf6'],
                         borderWidth: 3,
                         borderColor: '#ffffff'
@@ -2080,11 +2052,11 @@
             statusChartInstance = new Chart(ctx2, {
                 type: 'bar',
                 data: {
-                    labels: ['Menunggu', 'Sedang Dilayani', 'Selesai'],
+                    labels: ['Total Tamu Hari Ini'],
                     datasets: [{
                         label: 'Jumlah Tamu',
-                        data: [1, 1, 1],
-                        backgroundColor: ['#f59e0b', '#0ea5e9', '#10b981'],
+                        data: [0],
+                        backgroundColor: ['#10b981'],
                         borderRadius: 12
                     }]
                 },
@@ -2145,12 +2117,7 @@
             purposeChartInstance.data.datasets[0].data = Object.values(pCounts);
             purposeChartInstance.update();
 
-            const sCounts = { 'Menunggu': 0, 'Sedang Dilayani': 0, 'Selesai': 0 };
-            guests.forEach(g => {
-                if (sCounts[g.status] !== undefined) sCounts[g.status]++;
-            });
-
-            statusChartInstance.data.datasets[0].data = Object.values(sCounts);
+            statusChartInstance.data.datasets[0].data = [guests.length];
             statusChartInstance.update();
 
             if (surveyChartInstance) {
