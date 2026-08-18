@@ -14,18 +14,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- ==================================================================== -->
-    <!-- 📍 TEMPAT MENARUH KODE FIREBASE (GANTI TEKS DI BAWAH INI)            -->
+    <!-- 📍 KODE FIREBASE ANDA SUDAH TERPASANG OTOMATIS DI SINI               -->
     <!-- ==================================================================== -->
     <script>
-const firebaseConfig = {
-  apiKey: "AIzaSyCfdjQOOksC54tT76sOKFf133C_uuow2o8",
-  authDomain: "buku-tamu-ekasari-a85b3.firebaseapp.com",
-  projectId: "buku-tamu-ekasari-a85b3",
-  storageBucket: "buku-tamu-ekasari-a85b3.firebasestorage.app",
-  messagingSenderId: "98195902818",
-  appId: "1:98195902818:web:5ef77b9fecfd8c345b9c3b",
-  measurementId: "G-TB4CN18HTH"
-};
+        window.firebaseConfig = {
+            apiKey: "AIzaSyCfdjQOOksC54tT76sOKFf133C_uuow2o8",
+            authDomain: "buku-tamu-ekasari-a85b3.firebaseapp.com",
+            projectId: "buku-tamu-ekasari-a85b3",
+            storageBucket: "buku-tamu-ekasari-a85b3.firebasestorage.app",
+            messagingSenderId: "98195902818",
+            appId: "1:98195902818:web:5ef77b9fecfd8c345b9c3b",
+            measurementId: "G-TB4CN18HTH"
+        };
     </script>
     <!-- ==================================================================== -->
 
@@ -1351,8 +1351,8 @@ const firebaseConfig = {
                 }
             }
 
-            // Check if valid Firebase Config exists and has been configured
-            if (firebaseConfig && firebaseConfig.apiKey && firebaseConfig.apiKey !== "MASUKKAN_API_KEY_DISINI" && firebaseConfig.apiKey !== "PASTE_API_KEY_ANDA_DI_SINI") {
+            // Check if valid Firebase Config exists
+            if (firebaseConfig && firebaseConfig.apiKey && firebaseConfig.apiKey !== "PASTE_API_KEY_ANDA_DI_SINI") {
                 try {
                     const app = initializeApp(firebaseConfig);
                     auth = getAuth(app);
