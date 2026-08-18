@@ -123,10 +123,10 @@
                               <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                               <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400"></span>
                             </span>
-                            Petugas Piket
+                            Petugas
                         </div>
                         <div class="text-white font-semibold mt-1 flex items-center gap-1.5" id="operatorName">
-                            <i class="fa-solid fa-user-shield text-amber-300"></i> I Putu Gede Suparta
+                            <i class="fa-solid fa-user-shield text-amber-300"></i> Ni Luh Suryatianingsih
                         </div>
                     </div>
                 </div>
@@ -789,7 +789,6 @@
                                 <th class="p-4">Identitas Tamu</th>
                                 <th class="p-4">Keperluan & Catatan</th>
                                 <th class="p-4">Pejabat Dituju</th>
-                                <th class="p-4">Status Layanan</th>
                                 <th class="p-4 text-center">Aksi</th>
                             </tr>
                         </thead>
@@ -1813,7 +1812,7 @@
             if (filtered.length === 0) {
                 tbody.innerHTML = `
                     <tr>
-                        <td colspan="6" class="p-10 text-center text-slate-400">
+                        <td colspan="5" class="p-10 text-center text-slate-400">
                             <i class="fa-solid fa-folder-open text-4xl mb-3 block text-slate-300"></i>
                             <p class="font-bold text-sm text-slate-500">Tidak ada riwayat kunjungan yang cocok.</p>
                         </td>
@@ -1821,10 +1820,6 @@
                 `;
             } else {
                 tbody.innerHTML = filtered.map(g => {
-                    let statusClass = 'bg-amber-100 text-amber-800 border-amber-300';
-                    if (g.status === 'Selesai') statusClass = 'bg-emerald-100 text-emerald-800 border-emerald-300';
-                    if (g.status === 'Sedang Dilayani') statusClass = 'bg-sky-100 text-sky-800 border-sky-300';
-
                     let typeBadge = 'bg-emerald-100 text-emerald-800 border-emerald-200';
                     if (g.type === 'Instansi / Dinas') typeBadge = 'bg-blue-100 text-blue-800 border-blue-200';
                     if (g.type === 'Swasta / Umum') typeBadge = 'bg-purple-100 text-purple-800 border-purple-200';
@@ -1852,13 +1847,6 @@
                                 <span class="inline-flex items-center gap-1.5 text-xs font-extrabold px-3 py-1 rounded-xl bg-indigo-50 text-indigo-700 border border-indigo-200">
                                     <i class="fa-solid fa-user-tie text-indigo-500"></i> ${g.destination}
                                 </span>
-                            </td>
-                            <td class="p-4">
-                                <select onchange="updateStatus('${itemKey}', this.value)" class="text-xs font-extrabold px-3 py-1.5 rounded-full border-2 ${statusClass} outline-none cursor-pointer shadow-sm">
-                                    <option value="Menunggu" ${g.status === 'Menunggu' ? 'selected' : ''}>⏳ Menunggu</option>
-                                    <option value="Sedang Dilayani" ${g.status === 'Sedang Dilayani' ? 'selected' : ''}>🔄 Sedang Dilayani</option>
-                                    <option value="Selesai" ${g.status === 'Selesai' ? 'selected' : ''}>✅ Selesai</option>
-                                </select>
                             </td>
                             <td class="p-4 text-center">
                                 <button onclick='deleteGuest("${itemKey}")' title="Hapus Data" class="p-2 text-rose-500 hover:text-rose-700 rounded-xl bg-rose-50 hover:bg-rose-100 transition">
@@ -1970,7 +1958,7 @@
             }
 
             let csvContent = "data:text/csv;charset=utf-8,\uFEFF";
-            csvContent += "ID Registrasi,Jam,Tanggal,Nama,No HP,Kategori,Alamat,Keperluan,Tujuan,Catatan,Status\n";
+            csvContent += "ID Registrasi,Jam,Tanggal,Nama,No HP,Kategori,Alamat,Keperluan,Tujuan,Catatan\n";
 
             guests.forEach(g => {
                 const row = [
@@ -1983,8 +1971,7 @@
                     `"${g.address}"`,
                     `"${g.purpose}"`,
                     `"${g.destination}"`,
-                    `"${g.notes}"`,
-                    g.status
+                    `"${g.notes}"`
                 ].join(",");
                 csvContent += row + "\n";
             });
