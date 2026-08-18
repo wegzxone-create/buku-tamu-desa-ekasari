@@ -13,17 +13,20 @@
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- KONFIGURASI FIREBASE (TEMPEL KODE DARI FIREBASE CONSOLE DI SINI) -->
+    <!-- ==================================================================== -->
+    <!-- 📍 TEMPAT MENARUH KODE FIREBASE (GANTI TEKS DI BAWAH INI)            -->
+    <!-- ==================================================================== -->
     <script>
-        window.firebaseConfig = {
-            apiKey: "PASTE_API_KEY_ANDA_DI_SINI",
-            authDomain: "buku-tamu-ekasari.firebaseapp.com",
-            projectId: "buku-tamu-ekasari",
-            storageBucket: "buku-tamu-ekasari.firebasestorage.app",
-            messagingSenderId: "123456789",
-            appId: "1:123456789:web:abcdef"
-        };
+window.firebaseConfig = {
+       apiKey: "MASUKKAN_API_KEY_DISINI",
+       authDomain: "buku-tamu-ekasari.firebaseapp.com",
+       projectId: "buku-tamu-ekasari",
+       storageBucket: "buku-tamu-ekasari.firebasestorage.app",
+       messagingSenderId: "123456789012",
+       appId: "1:123456789012:web:abcdef123456"
+   };
     </script>
+    <!-- ==================================================================== -->
 
     <script>
         tailwind.config = {
@@ -1347,8 +1350,8 @@
                 }
             }
 
-            // Check if valid Firebase Config exists
-            if (firebaseConfig && firebaseConfig.apiKey && firebaseConfig.apiKey !== "PASTE_API_KEY_ANDA_DI_SINI") {
+            // Check if valid Firebase Config exists and has been configured
+            if (firebaseConfig && firebaseConfig.apiKey && firebaseConfig.apiKey !== "MASUKKAN_API_KEY_DISINI" && firebaseConfig.apiKey !== "PASTE_API_KEY_ANDA_DI_SINI") {
                 try {
                     const app = initializeApp(firebaseConfig);
                     auth = getAuth(app);
